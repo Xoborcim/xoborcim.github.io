@@ -12,11 +12,11 @@ House style follows Hewn (IM FELL English, parchment and ink, light and dark).
 /hewn/                     NOT here: Hewn's playable web version, published from the Xoborcim/hewn repo
 ```
 
-## Before publishing
-Replace `CONTACT_EMAIL` everywhere with the address you want public:
+## Contact email
+Pages show `xoborcim.games@gmail.com`. To change it:
 
 ```sh
-grep -rln CONTACT_EMAIL . | xargs sed -i '' 's/CONTACT_EMAIL/you@example.com/g'
+grep -rl xoborcim.games@gmail.com --include="*.html" . | xargs sed -i '' 's/xoborcim.games@gmail.com/new@address/g'
 ```
 
 ## Publish

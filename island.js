@@ -3,9 +3,12 @@
    transition on the canvas (compositor only); static under reduced motion. No JS = no island. */
 (function () {
   "use strict";
-  var c = document.createElement("canvas");
-  c.className = "island"; c.setAttribute("aria-hidden", "true");
-  document.body.insertBefore(c, document.body.firstChild);
+  var box = document.createElement("div"); box.className = "isle"; box.setAttribute("aria-hidden", "true");
+  var c = document.createElement("canvas"); c.className = "island";
+  var fog = document.createElement("canvas"); fog.className = "fog";
+  box.appendChild(c); box.appendChild(fog);
+  document.body.insertBefore(box, document.body.firstChild);
+  var still = matchMedia("(prefers-reduced-motion: reduce)").matches;
   var seed = (Math.random() * 4294967296) >>> 0;
   function rng(s) { return function () { s |= 0; s = s + 0x6D2B79F5 | 0; var t = Math.imul(s ^ s >>> 15, 1 | s); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
   var dark = matchMedia("(prefers-color-scheme: dark)");
@@ -46,9 +49,54 @@
     g.strokeStyle = P.ink; g.lineWidth = 2; g.lineJoin = "round"; coast(1); g.stroke();
     g.globalAlpha = 0.35; g.lineWidth = 0.8; g.translate(1.2, -0.8); coast(1.01); g.stroke(); g.globalAlpha = 1;
   }
-  paint();
+  /* Fog of war: one canvas, parchment fill + faint hatching, erased with a destination-out brush.
+     Reveals are stored in 400-space so they replay on resize/scheme change. Drawing happens only
+     on input, batched into one rAF; nothing runs while idle. */
+  var FOG = { light: { fill: "#EDE5D6", hatch: "rgba(111,104,95,.16)", edge: "rgba(58,51,44,.35)", word: "rgba(90,83,75,.55)" },
+              dark:  { fill: "#151216", hatch: "rgba(171,161,148,.10)", edge: "rgba(207,196,178,.28)", word: "rgba(171,161,148,.45)" } };
+  var holes = [], queue = [], fr = 0, fg = null, k = 1;
+  function hole(h, edge) {
+    fg.globalCompositeOperation = "destination-out";
+    var gr = fg.createRadialGradient(h[0], h[1], h[2] * 0.35, h[0], h[1], h[2]);
+    gr.addColorStop(0, "rgba(0,0,0,1)"); gr.addColorStop(1, "rgba(0,0,0,0)");
+    fg.fillStyle = gr; fg.beginPath(); fg.arc(h[0], h[1], h[2], 0, 6.2832); fg.fill();
+    fg.globalCompositeOperation = "source-over";
+    if (edge) { fg.strokeStyle = FOG[dark.matches ? "dark" : "light"].edge; fg.lineWidth = 0.8; fg.setLineDash([3, 3]); fg.beginPath(); fg.arc(h[0], h[1], h[2] * 0.92, 0, 6.2832); fg.stroke(); fg.setLineDash([]); }
+  }
+  function paintFog() {
+    if (still) { fog.remove(); return; }
+    var S = c.width; if (!S) return; fog.width = fog.height = S;
+    fg = fog.getContext("2d"); fg.setTransform(S / 400, 0, 0, S / 400, 0, 0);
+    var F = FOG[dark.matches ? "dark" : "light"];
+    fg.fillStyle = F.fill; fg.fillRect(0, 0, 400, 400);
+    fg.strokeStyle = F.hatch; fg.lineWidth = 1;
+    for (var i = -400; i < 400; i += 9) { fg.beginPath(); fg.moveTo(i, 0); fg.lineTo(i + 400, 400); fg.stroke(); }
+    fg.fillStyle = F.word; fg.font = "italic 20px 'IM Fell', Georgia, serif"; fg.textAlign = "center";
+    fg.fillText("terra incognita", 200, 210);
+    holes.forEach(function (h) { hole(h, false); });
+  }
+  function flush() { fr = 0; queue.forEach(function (h) { hole(h, true); holes.push(h); }); queue = []; if (holes.length > 600) holes.splice(0, holes.length - 600); }
+  function reveal(x, y, r) { queue.push([x, y, r]); if (!fr) fr = requestAnimationFrame(flush); }
+  if (!still) {
+    var lastP = 0;
+    function atPoint(e, r) {
+      var b = fog.getBoundingClientRect(); if (!b.width) return;
+      var x = (e.clientX - b.left) / b.width * 400, y = (e.clientY - b.top) / b.height * 400;
+      if (x < -60 || y < -60 || x > 460 || y > 460) return;
+      reveal(x, y, r);
+    }
+    document.addEventListener("pointermove", function (e) { var n = performance.now(); if (n - lastP < 24) return; lastP = n; atPoint(e, 46); }, { passive: true });
+    document.addEventListener("pointerdown", function (e) { atPoint(e, 70); }, { passive: true });
+    var maxY = 0, sr = rng(seed ^ 0x9e37);
+    addEventListener("scroll", function () {
+      var y = scrollY; if (y < maxY + 120) return; maxY = y;   // a new patch per ~120px of fresh scroll
+      reveal(60 + sr() * 280, 60 + sr() * 280, 40);
+    }, { passive: true });
+  }
+  function all() { paint(); paintFog(); }
+  all();
   var rt = 0, lastW = c.clientWidth;
-  addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(function () { if (c.clientWidth !== lastW) { lastW = c.clientWidth; paint(); } }, 200); });
-  (dark.addEventListener ? dark.addEventListener.bind(dark, "change") : dark.addListener.bind(dark))(paint);
-  requestAnimationFrame(function () { requestAnimationFrame(function () { c.classList.add("in"); }); });
+  addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(function () { if (c.clientWidth !== lastW) { lastW = c.clientWidth; all(); } }, 200); });
+  (dark.addEventListener ? dark.addEventListener.bind(dark, "change") : dark.addListener.bind(dark))(all);
+  requestAnimationFrame(function () { requestAnimationFrame(function () { box.classList.add("in"); }); });
 })();

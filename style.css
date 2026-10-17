@@ -17,7 +17,6 @@
   --shadow: 0 1px 0 rgba(255,255,255,.5) inset, 0 18px 36px -24px rgba(45, 30, 20, .45);
   --shadow-hover: 0 1px 0 rgba(255,255,255,.5) inset, 0 26px 44px -24px rgba(45, 30, 20, .55);
   --on-accent: #FFFFFF;
-  --wash: #DFD0B0; --wash-ink: #1D1A1C; --press: rgba(90, 83, 75, .10);
   --grain: rgba(60, 40, 20, .045);
   --lattice: rgba(110, 80, 60, .06);
 
@@ -42,7 +41,6 @@
     --shadow: 0 1px 0 rgba(255,255,255,.04) inset, 0 20px 40px -26px rgba(0, 0, 0, .9);
     --shadow-hover: 0 1px 0 rgba(255,255,255,.05) inset, 0 28px 48px -26px rgba(0, 0, 0, 1);
     --on-accent: #121013;
-    --wash: #3B3229; --wash-ink: #ECE4D6; --press: rgba(236, 228, 214, .08);
     --grain: rgba(255, 240, 220, .025);
     --lattice: rgba(255, 220, 200, .035);
   }
@@ -67,9 +65,7 @@ body {
   min-height: 100vh;
 }
 main { max-width: 780px; margin: 0 auto; padding: max(28px, env(safe-area-inset-top)) 20px var(--s6); }
-::selection { background: var(--wash); color: var(--wash-ink); text-shadow: none; }
-a { color: var(--ink); text-decoration-color: var(--line-strong); text-decoration-thickness: 1px; text-underline-offset: 3px; transition: color .15s, text-decoration-color .15s, text-decoration-thickness .15s; }
-a:hover { color: var(--ink); text-decoration-color: var(--ink); text-decoration-thickness: 2px; }
+a { color: var(--ink); text-decoration-color: var(--line-strong); text-decoration-thickness: 1px; text-underline-offset: 3px; transition: color .15s, text-decoration-color .15s; }
 a:focus-visible, button:focus-visible, [tabindex]:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
 h1, h2, h3 { font-family: var(--fell); font-weight: 400; margin: 0; letter-spacing: .005em; }
 .caps { font-family: var(--fell-sc); letter-spacing: .1em; font-size: var(--t-sm); color: var(--ink2); }
@@ -232,12 +228,9 @@ footer a:hover { color: var(--accent-text); }
 @keyframes rule-spin { from { transform: rotate(-135deg) scale(.4); } to { transform: rotate(45deg) scale(1); } }
 @media (prefers-reduced-motion: reduce) { .threads, .seam { display: none; } .motion .reveal { opacity: 1; transform: none; } }
 
-/* Highlighting in the paper's own palette: ochre wash selection, inked underlines, ink-dashed focus */
-html { -webkit-tap-highlight-color: transparent; }
-.links a:hover, footer a:hover, .teaser-status a:hover, a:not(.btn):not(.back):focus-visible { color: var(--ink); text-decoration-color: var(--ink); text-decoration-thickness: 2px; }
+/* Focus: clear ink-dashed outline (selection, hover and press use browser defaults) */
 a:focus-visible, button:focus-visible, [tabindex]:focus-visible, .btn:focus-visible { outline: 2px dashed var(--ink); outline-offset: 3px; box-shadow: none; border-radius: 4px; }
 .plate:focus-within, .motion .plate:focus-within { outline-style: dashed; outline-color: var(--line-strong); }
-.btn:active, .teaser-reset:active, .pq-dye:active, a:active { background-color: var(--press); }
 /* Patchwork island (island.js): cached canvas + fog-of-war canvas, beside the masthead, behind content */
 .isle { position: absolute; top: 48px; left: max(12px, calc(50% - 390px - 270px)); width: 260px; aspect-ratio: 1; z-index: 0; pointer-events: none; opacity: 0; transition: opacity 1.4s var(--ease); }
 .isle.in { opacity: .8; }

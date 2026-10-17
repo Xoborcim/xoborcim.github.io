@@ -17,6 +17,7 @@
   --shadow: 0 1px 0 rgba(255,255,255,.5) inset, 0 18px 36px -24px rgba(45, 30, 20, .45);
   --shadow-hover: 0 1px 0 rgba(255,255,255,.5) inset, 0 26px 44px -24px rgba(45, 30, 20, .55);
   --on-accent: #FFFFFF;
+  --thread: #F2C4CF; --thread-ink: #1D1A1C; --hl: rgba(232, 150, 170, .38);
   --grain: rgba(60, 40, 20, .045);
   --lattice: rgba(110, 80, 60, .06);
 
@@ -41,6 +42,7 @@
     --shadow: 0 1px 0 rgba(255,255,255,.04) inset, 0 20px 40px -26px rgba(0, 0, 0, .9);
     --shadow-hover: 0 1px 0 rgba(255,255,255,.05) inset, 0 28px 48px -26px rgba(0, 0, 0, 1);
     --on-accent: #121013;
+    --thread: #6A2638; --thread-ink: #F6EEE2; --hl: rgba(200, 101, 122, .30);
     --grain: rgba(255, 240, 220, .025);
     --lattice: rgba(255, 220, 200, .035);
   }
@@ -65,7 +67,7 @@ body {
   min-height: 100vh;
 }
 main { max-width: 780px; margin: 0 auto; padding: max(28px, env(safe-area-inset-top)) 20px var(--s6); }
-::selection { background: var(--accent); color: var(--bg); }
+::selection { background: var(--thread); color: var(--thread-ink); text-shadow: none; }
 a { color: var(--ink); text-decoration-color: var(--line-strong); text-decoration-thickness: 1px; text-underline-offset: 3px; transition: color .15s, text-decoration-color .15s; }
 a:hover { color: var(--accent-text); text-decoration-color: var(--accent); }
 a:focus-visible, button:focus-visible, [tabindex]:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
@@ -229,3 +231,13 @@ footer a:hover { color: var(--accent-text); }
 .motion .rule.reveal.in i { animation: rule-spin .9s var(--ease) .2s both; }
 @keyframes rule-spin { from { transform: rotate(-135deg) scale(.4); } to { transform: rotate(45deg) scale(1); } }
 @media (prefers-reduced-motion: reduce) { .threads, .seam { display: none; } .motion .reveal { opacity: 1; transform: none; } }
+
+/* Themed highlighting: thread-pink selection, highlighter-stroke links, stitched focus */
+html { -webkit-tap-highlight-color: transparent; }
+a:not(.btn):not(.back) { background-image: linear-gradient(var(--hl), var(--hl)); background-repeat: no-repeat; background-size: 0% .42em; background-position: 0 88%; transition: background-size .25s var(--ease), color .2s; }
+a:not(.btn):not(.back):hover, a:not(.btn):not(.back):focus-visible { background-size: 100% .42em; }
+.plate a { background-image: none; }
+a:focus-visible, button:focus-visible, [tabindex]:focus-visible, .btn:focus-visible { outline: 2px dashed var(--accent); outline-offset: 3px; box-shadow: 0 0 0 6px var(--accent-soft); border-radius: 4px; }
+.plate:focus-within { outline-style: dashed; }
+.btn:active, .teaser-reset:active, .pq-dye:active, a:active { background-color: var(--accent-soft); }
+@media (prefers-reduced-motion: reduce) { a:not(.btn):not(.back) { transition: none; } }

@@ -28,10 +28,6 @@
   }
   var plates = Array.prototype.slice.call(document.querySelectorAll(".plate"));
   plates.forEach(function (p) { seam(p, 8); });
-  // masthead contour lines ink themselves in
-  document.querySelectorAll(".masthead .contours path").forEach(function (p, i) {
-    p.setAttribute("pathLength", "1"); p.classList.add("ink"); p.style.transitionDelay = (i * 120) + "ms";
-  });
 
   /* 4. Scroll reveal (also triggers the seams inside each revealed block). */
   var targets = document.querySelectorAll(".masthead, .rule, .plate, footer");
@@ -60,14 +56,14 @@
   var ctx = c.getContext("2d"), W = 0, H = 0, dpr = Math.min(window.devicePixelRatio || 1, 1.5);
   function resize() { W = innerWidth; H = innerHeight; c.width = W * dpr; c.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); }
   resize(); addEventListener("resize", resize);
-  var threads = [];
+  var threads = [], ripples = [];
   for (var i = 0; i < 7; i++) threads.push({ y: (i + 0.5) / 7, a: 18 + Math.random() * 30, f: 0.002 + Math.random() * 0.003, s: 0.00015 + Math.random() * 0.0002, p: Math.random() * 6.28, pink: i % 3 === 0 });
   var dark = window.matchMedia("(prefers-color-scheme: dark)");
   var running = false, last = 0, t0 = performance.now();
   function frame(now) {
     if (!running) return;
     requestAnimationFrame(frame);
-    if (now - last < 42) return; last = now;
+    if (!ripples.length && now - last < 42) return; last = now; // threads ~24fps; ripples get full rate
     var t = now - t0, d = dark.matches;
     ctx.clearRect(0, 0, W, H);
     ctx.lineWidth = 1.2; ctx.setLineDash([7, 6]);
@@ -81,7 +77,30 @@
       }
       ctx.stroke();
     });
+    // ripples: 3 expanding thread rings each, fading out over RIPPLE_MS
+    ctx.setLineDash([5, 5]); ctx.lineDashOffset = 0;
+    for (var k = ripples.length - 1; k >= 0; k--) {
+      var rp = ripples[k], age = (now - rp.t) / RIPPLE_MS;
+      if (age >= 1) { ripples.splice(k, 1); continue; }
+      for (var ring = 0; ring < 3; ring++) {
+        var a = age - ring * 0.14; if (a <= 0) continue;
+        var e = 1 - Math.pow(1 - a, 3);
+        ctx.globalAlpha = (1 - a) * 0.55; ctx.lineWidth = 1.6 - ring * 0.4;
+        ctx.strokeStyle = rp.pink ? (d ? "#FF7FAF" : "#D9467F") : (d ? "#C8657A" : "#7A2A3A");
+        ctx.beginPath(); ctx.arc(rp.x, rp.y, 6 + e * (110 - ring * 22), 0, 6.2832); ctx.stroke();
+      }
+    }
+    ctx.globalAlpha = 1;
   }
+  /* Ripple on background clicks/taps only; no DOM per click, at most MAX_RIPPLES alive. */
+  var RIPPLE_MS = 1100, MAX_RIPPLES = 5, pinkNext = false;
+  document.addEventListener("pointerdown", function (e) {
+    if (e.button > 0 || document.hidden) return;
+    if (e.target.closest && e.target.closest("a, button, input, select, textarea, label, [role], .plate, .teaser, .masthead .mark")) return;
+    if (ripples.length >= MAX_RIPPLES) ripples.shift();
+    ripples.push({ x: e.clientX, y: e.clientY, t: performance.now(), pink: (pinkNext = !pinkNext) });
+    start();
+  }, { passive: true });
   function start() { if (!running && !document.hidden) { running = true; requestAnimationFrame(frame); } }
   function stop() { running = false; }
   document.addEventListener("visibilitychange", function () { document.hidden ? stop() : start(); });

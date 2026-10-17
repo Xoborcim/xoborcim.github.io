@@ -97,8 +97,7 @@ h1, h2, h3 { font-family: var(--fell); font-weight: 400; margin: 0; letter-spaci
 
 /* ---------- home: masthead ---------- */
 .masthead { position: relative; text-align: center; padding: var(--s5) 0 var(--s2); overflow: hidden; }
-.masthead svg.contours { position: absolute; inset: -40px -20%; width: 140%; height: calc(100% + 80px); z-index: 0; color: var(--contour); }
-.masthead > *:not(svg.contours) { position: relative; z-index: 1; }
+.masthead > * { position: relative; z-index: 1; }
 .masthead .mark { display: block; margin: 0 auto var(--s3); color: var(--ink); border-radius: 10px; box-shadow: 0 10px 22px -12px rgba(0,0,0,.5); }
 .masthead .caps { margin: 0 0 var(--s1); }
 .masthead h1 { font-size: var(--t-h1); line-height: .95; letter-spacing: .015em; }
@@ -216,8 +215,6 @@ footer a:hover { color: var(--accent-text); }
 .seam-draw { stroke-dasharray: 1 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1.6s var(--ease) .25s; }
 .motion .plate::before { display: none; } /* the drawn seam replaces the static band */
 .in .seam-draw { stroke-dashoffset: 0; }
-.motion .contours path.ink { stroke-dasharray: 1 1; stroke-dashoffset: 1; transition: stroke-dashoffset 2.2s var(--ease); }
-.motion .masthead.in .contours path.ink { stroke-dashoffset: 0; }
 .motion .masthead h1::after { transform: scaleX(0); transition: transform 1s var(--ease) .5s; }
 .motion .masthead.in h1::after { transform: scaleX(1); }
 .motion .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s var(--ease), transform .7s var(--ease), box-shadow .25s var(--ease), outline-color .25s; }

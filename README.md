@@ -5,7 +5,7 @@ and privacy pages, and the `app-ads.txt` that AdMob checks. Plain HTML and CSS, 
 House style follows Hewn (IM FELL English, parchment and ink, light and dark).
 
 ```
-/                          home: every game as a "plate"
+/                          home: every game as a "plate", each with a tiny playable teaser (home.js)
 /games/hewn/               Hewn: about, support.html, privacy.html
 /games/pocket-quilt/       Pocket Quilt: about, support.html, privacy.html
 /app-ads.txt               AdMob seller line (one publisher covers both games)

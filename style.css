@@ -207,3 +207,28 @@ footer a:hover { color: var(--accent-text); }
   *, *::before, *::after { transition: none !important; animation: none !important; }
   .plate:hover, .plate:focus-within, .btn:hover, .plate a:hover img, .pq-grid button:hover { transform: none; }
 }
+
+/* ---------- home: motion layer (motion.js adds html.motion only when motion is allowed) ---------- */
+.threads { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+.motion main { position: relative; z-index: 1; }
+.seam { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
+.seam-line { stroke: var(--accent); stroke-width: 1.6; stroke-dasharray: 6 5; opacity: .5; }
+.seam-draw { stroke-dasharray: 1 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1.6s var(--ease) .25s; }
+.motion .plate::before { display: none; } /* the drawn seam replaces the static band */
+.in .seam-draw { stroke-dashoffset: 0; }
+.motion .contours path.ink { stroke-dasharray: 1 1; stroke-dashoffset: 1; transition: stroke-dashoffset 2.2s var(--ease); }
+.motion .masthead.in .contours path.ink { stroke-dashoffset: 0; }
+.motion .masthead h1::after { transform: scaleX(0); transition: transform 1s var(--ease) .5s; }
+.motion .masthead.in h1::after { transform: scaleX(1); }
+.motion .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s var(--ease), transform .7s var(--ease), box-shadow .25s var(--ease), outline-color .25s; }
+.motion .reveal.in { opacity: 1; transform: none; }
+.motion .plate.reveal.in { transform: perspective(900px) translateY(0); }
+.motion .plate.reveal.in:hover, .motion .plate.reveal.in:focus-within { transform: perspective(900px) translateY(-6px); }
+.motion .plate.reveal.in.tilt { transform: perspective(900px) rotateX(var(--rx, 0)) rotateY(var(--ry, 0)) translateY(-6px); transition: transform .12s linear, box-shadow .25s var(--ease), outline-color .25s; }
+.motion .plate::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0; transition: opacity .3s;
+  background: radial-gradient(420px circle at var(--gx, 50%) var(--gy, 0%), var(--accent-soft), transparent 60%); }
+.motion .plate.tilt::after { opacity: 1; }
+.motion .plate:focus-within { outline-color: var(--accent); }
+.motion .rule.reveal.in i { animation: rule-spin .9s var(--ease) .2s both; }
+@keyframes rule-spin { from { transform: rotate(-135deg) scale(.4); } to { transform: rotate(45deg) scale(1); } }
+@media (prefers-reduced-motion: reduce) { .threads, .seam { display: none; } .motion .reveal { opacity: 1; transform: none; } }

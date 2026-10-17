@@ -6,6 +6,10 @@
   var box = document.createElement("div"); box.className = "isle"; box.setAttribute("aria-hidden", "true");
   var c = document.createElement("canvas"); c.className = "island";
   var fog = document.createElement("canvas"); fog.className = "fog";
+  // Critical layout inline, so the two canvases can never drift apart even if a stale/cached
+  // stylesheet is paired with this script: both fill the same wrapper box exactly.
+  box.style.cssText = "position:absolute;z-index:0;pointer-events:none;aspect-ratio:1/1;";
+  c.style.cssText = fog.style.cssText = "position:absolute;left:0;top:0;width:100%;height:100%;display:block;";
   box.appendChild(c); box.appendChild(fog);
   document.body.insertBefore(box, document.body.firstChild);
   var still = matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -17,7 +21,7 @@
     dark:  { patch: ["#4A4032", "#3C4136", "#4A3537", "#453A2C", "#373B3D", "#524836"], ink: "#CFC4B2", seam: "rgba(207,196,178,.45)", wave: "rgba(171,161,148,.30)" }
   };
   function paint() {
-    var css = c.clientWidth || 300, dpr = Math.min(devicePixelRatio || 1, 1.5), S = Math.round(css * dpr);
+    var css = box.clientWidth || 260, dpr = Math.min(devicePixelRatio || 1, 1.5), S = Math.round(css * dpr);
     if (!S) return;
     c.width = c.height = S;
     var g = c.getContext("2d"), r = rng(seed), P = PAL[dark.matches ? "dark" : "light"];
@@ -61,7 +65,6 @@
     gr.addColorStop(0, "rgba(0,0,0,1)"); gr.addColorStop(1, "rgba(0,0,0,0)");
     fg.fillStyle = gr; fg.beginPath(); fg.arc(h[0], h[1], h[2], 0, 6.2832); fg.fill();
     fg.globalCompositeOperation = "source-over";
-    if (edge) { fg.strokeStyle = FOG[dark.matches ? "dark" : "light"].edge; fg.lineWidth = 0.8; fg.setLineDash([3, 3]); fg.beginPath(); fg.arc(h[0], h[1], h[2] * 0.92, 0, 6.2832); fg.stroke(); fg.setLineDash([]); }
   }
   function paintFog() {
     if (still) { fog.remove(); return; }
@@ -75,7 +78,7 @@
     fg.fillText("terra incognita", 200, 210);
     holes.forEach(function (h) { hole(h, false); });
   }
-  function flush() { fr = 0; queue.forEach(function (h) { hole(h, true); holes.push(h); }); queue = []; if (holes.length > 600) holes.splice(0, holes.length - 600); }
+  function flush() { fr = 0; queue.forEach(function (h) { hole(h); holes.push(h); }); queue = []; if (holes.length > 600) holes.splice(0, holes.length - 600); }
   function reveal(x, y, r) { queue.push([x, y, r]); if (!fr) fr = requestAnimationFrame(flush); }
   if (!still) {
     var lastP = 0;
@@ -95,8 +98,8 @@
   }
   function all() { paint(); paintFog(); }
   all();
-  var rt = 0, lastW = c.clientWidth;
-  addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(function () { if (c.clientWidth !== lastW) { lastW = c.clientWidth; all(); } }, 200); });
+  var rt = 0, lastW = box.clientWidth;
+  addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(function () { if (c.clientWidth !== lastW) { lastW = box.clientWidth; all(); } }, 200); });
   (dark.addEventListener ? dark.addEventListener.bind(dark, "change") : dark.addListener.bind(dark))(all);
   requestAnimationFrame(function () { requestAnimationFrame(function () { box.classList.add("in"); }); });
 })();

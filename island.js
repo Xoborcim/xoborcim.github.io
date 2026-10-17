@@ -32,9 +32,14 @@
     function rad(t) { var v = 1; h.forEach(function (q) { v += q.a * Math.sin(q.f * t + q.p); }); return base * v; }
     function coast(scale) { g.beginPath(); for (var i = 0; i <= N; i++) { var t = i / N * 6.2832, R = rad(t) * scale; i ? g.lineTo(cx + Math.cos(t) * R, cy + Math.sin(t) * R * 0.82) : g.moveTo(cx + Math.cos(t) * R, cy + Math.sin(t) * R * 0.82); } g.closePath(); }
     // faint wave lines offshore
-    g.lineWidth = 1.1; g.strokeStyle = P.wave; g.setLineDash([2, 5]);
-    [1.16, 1.32, 1.5].forEach(function (s) { coast(s); g.stroke(); });
-    g.setLineDash([]);
+    // a few short, broken, wavy strokes hugging the coast (no closed rings)
+    g.lineWidth = 1.1; g.strokeStyle = P.wave; g.lineCap = "round";
+    for (var w = 0; w < 7; w++) {
+      var t0 = r() * 6.2832, span = 0.35 + r() * 0.5, sc = 1.1 + r() * 0.22, ph = r() * 6.28;
+      g.beginPath();
+      for (var j = 0; j <= 16; j++) { var t = t0 + span * j / 16, R = rad(t) * sc + Math.sin(j * 1.3 + ph) * 2.2; j ? g.lineTo(cx + Math.cos(t) * R, cy + Math.sin(t) * R * 0.82) : g.moveTo(cx + Math.cos(t) * R, cy + Math.sin(t) * R * 0.82); }
+      g.stroke();
+    }
     // patchwork land: a slightly rotated, jittered quilt grid clipped to the coast
     g.save(); coast(1); g.clip();
     var rot = (r() - 0.5) * 0.5, step = 46, n = 7, pts = [];
@@ -59,11 +64,25 @@
   var FOG = { light: { fill: "#EDE5D6", hatch: "rgba(111,104,95,.16)", edge: "rgba(58,51,44,.35)", word: "rgba(90,83,75,.55)" },
               dark:  { fill: "#151216", hatch: "rgba(171,161,148,.10)", edge: "rgba(207,196,178,.28)", word: "rgba(171,161,148,.45)" } };
   var holes = [], queue = [], fr = 0, fg = null, k = 1;
-  function hole(h, edge) {
+  /* Organic brush, built once: many jittered, noise-edged, blurred dabs at low alpha, so reveals
+     overlap into a soft painted wash with no round outline. Each reveal stamps it rotated. */
+  var brush = (function () {
+    var B = 128, bc = document.createElement("canvas"); bc.width = bc.height = B;
+    var b = bc.getContext("2d"), br = rng(seed ^ 0x51ed);
+    b.filter = "blur(5px)";
+    for (var d = 0; d < 16; d++) {
+      var ox = 64 + (br() - 0.5) * 48, oy = 64 + (br() - 0.5) * 48, rr = 12 + br() * 18, M = 11;
+      b.fillStyle = "rgba(0,0,0," + (0.18 + br() * 0.22).toFixed(2) + ")";
+      b.beginPath();
+      for (var i = 0; i <= M; i++) { var a = i / M * 6.2832, q = rr * (0.65 + br() * 0.6); i ? b.lineTo(ox + Math.cos(a) * q, oy + Math.sin(a) * q) : b.moveTo(ox + Math.cos(a) * q, oy + Math.sin(a) * q); }
+      b.closePath(); b.fill();
+    }
+    return bc;
+  })();
+  function hole(h) {
+    var ang = (h[0] * 12.9898 + h[1] * 78.233) % 6.2832, s2 = h[2] * 2.3;
     fg.globalCompositeOperation = "destination-out";
-    var gr = fg.createRadialGradient(h[0], h[1], h[2] * 0.35, h[0], h[1], h[2]);
-    gr.addColorStop(0, "rgba(0,0,0,1)"); gr.addColorStop(1, "rgba(0,0,0,0)");
-    fg.fillStyle = gr; fg.beginPath(); fg.arc(h[0], h[1], h[2], 0, 6.2832); fg.fill();
+    fg.save(); fg.translate(h[0], h[1]); fg.rotate(ang); fg.drawImage(brush, -s2 / 2, -s2 / 2, s2, s2); fg.restore();
     fg.globalCompositeOperation = "source-over";
   }
   function paintFog() {

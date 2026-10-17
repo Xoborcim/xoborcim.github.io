@@ -99,8 +99,7 @@
   document.addEventListener("pointerdown", function (e) {
     if (e.button > 0 || document.hidden) return;
     if (e.target.closest && e.target.closest("a, button, input, select, textarea, label, [role], .plate, .teaser, .masthead .mark")) return;
-    var isle = document.querySelector(".isle"); // no ripple rings over the island painting
-    if (isle) { var ib = isle.getBoundingClientRect(); if (e.clientX >= ib.left && e.clientX <= ib.right && e.clientY >= ib.top && e.clientY <= ib.bottom) return; }
+    if (window.__archiHit && window.__archiHit(e.clientX, e.clientY)) return; // no ripple rings over island paintings
     if (ripples.length >= MAX_RIPPLES) ripples.shift();
     ripples.push({ x: e.clientX, y: e.clientY, t: performance.now(), pink: (pinkNext = !pinkNext) });
     start();

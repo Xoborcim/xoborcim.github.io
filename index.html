@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -12,6 +12,8 @@
   <meta property="og:description" content="Hewn and Pocket Quilt: puzzle games for iPhone and the web.">
   <meta property="og:image" content="https://xoborcim.github.io/img/hewn.png">
   <link rel="stylesheet" href="/style.css">
+  <script>document.documentElement.className = "js";</script>
+  <script src="/home.js" defer></script>
 </head>
 <body>
 <main>
@@ -46,6 +48,30 @@
         <a class="btn ghost" href="/games/hewn/">About Hewn</a>
       </div>
       <p class="links"><a href="/games/hewn/support.html">Support</a> · <a href="/games/hewn/privacy.html">Privacy</a></p>
+      <section class="teaser" id="hewn-teaser" aria-labelledby="hewn-teaser-title">
+        <h3 id="hewn-teaser-title" class="caps">Try a pocket map</h3>
+        <p class="teaser-rules">Give every square a height. Neighbours differ by exactly 1, <span aria-hidden="true">▲</span> marks every summit and <span aria-hidden="true">▼</span> every hollow, and the lowest square is 0.</p>
+        <div class="hewn-grid" role="grid" aria-label="Three by three Hewn map" data-solution="1,2,1,0,1,2,1,2,3">
+          <div role="row">
+            <button type="button" role="gridcell" data-i="0"></button>
+            <button type="button" role="gridcell" data-i="1" data-mark="summit"></button>
+            <button type="button" role="gridcell" data-i="2" data-mark="hollow"></button>
+          </div>
+          <div role="row">
+            <button type="button" role="gridcell" data-i="3" data-mark="hollow"></button>
+            <button type="button" role="gridcell" data-i="4"></button>
+            <button type="button" role="gridcell" data-i="5"></button>
+          </div>
+          <div role="row">
+            <button type="button" role="gridcell" data-i="6"></button>
+            <button type="button" role="gridcell" data-i="7"></button>
+            <button type="button" role="gridcell" data-i="8" data-mark="summit"></button>
+          </div>
+        </div>
+        <p class="teaser-help">Click or press Enter to raise a square, type 0–4, Backspace to clear. Arrow keys move.</p>
+        <p class="teaser-status" role="status" aria-live="polite"></p>
+        <button type="button" class="teaser-reset">Clear map</button>
+      </section>
     </div>
   </article>
 
@@ -63,6 +89,27 @@
         <a class="btn ghost" href="/games/pocket-quilt/">About Pocket Quilt</a>
       </div>
       <p class="links"><a href="/games/pocket-quilt/support.html">Support</a> · <a href="/games/pocket-quilt/privacy.html">Privacy</a></p>
+      <section class="teaser" id="pq-teaser" aria-labelledby="pq-teaser-title">
+        <h3 id="pq-teaser-title" class="caps">Sew a pocket quilt</h3>
+        <p class="teaser-rules">Place the piece from your pocket on an empty square. Finish a 2×2 square of one fabric and it's sewn into your quilt. Wrong fabric? Spend a spool to dye it.</p>
+        <div class="pq-play">
+          <div class="pq-grid" role="grid" aria-label="Four by four patchwork board" data-board="rrbb r.b. yy.r y.rr">
+            <div role="row"><button type="button" role="gridcell"></button><button type="button" role="gridcell"></button><button type="button" role="gridcell"></button><button type="button" role="gridcell"></button></div>
+            <div role="row"><button type="button" role="gridcell"></button><button type="button" role="gridcell"></button><button type="button" role="gridcell"></button><button type="button" role="gridcell"></button></div>
+            <div role="row"><button type="button" role="gridcell"></button><button type="button" role="gridcell"></button><button type="button" role="gridcell"></button><button type="button" role="gridcell"></button></div>
+            <div role="row"><button type="button" role="gridcell"></button><button type="button" role="gridcell"></button><button type="button" role="gridcell"></button><button type="button" role="gridcell"></button></div>
+          </div>
+          <div class="pq-side">
+            <p class="caps">Pocket</p>
+            <span class="pq-pocket swatch" aria-live="polite"></span>
+            <button type="button" class="pq-dye">Dye <span class="pq-spools"></span></button>
+            <p class="caps">Quilt</p>
+            <ol class="pq-quilt" aria-label="Your quilt"><li></li><li></li><li></li><li></li></ol>
+          </div>
+        </div>
+        <p class="teaser-status" role="status" aria-live="polite"></p>
+        <button type="button" class="teaser-reset">Start over</button>
+      </section>
     </div>
   </article>
 

@@ -110,3 +110,62 @@ figure figcaption { font-family: var(--fell); font-style: italic; color: var(--i
 
 footer { text-align: center; margin-top: 40px; color: var(--ink2); font-size: 15px; }
 footer a { color: var(--ink2); }
+
+/* ---------- home: playable teasers (home.js) ---------- */
+.no-js .teaser { display: none; }
+.teaser { margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--line); }
+.teaser h3 { font-size: 15px; margin-bottom: 4px; }
+.teaser-rules, .teaser-help { font-size: 15px; color: var(--ink2); margin: 0 0 10px; }
+.teaser-help { margin-top: 8px; }
+.teaser-status { min-height: 1.55em; font-family: var(--fell); font-style: italic; font-size: 17px; margin: 6px 0; }
+.teaser-status a { color: var(--ink); text-decoration-color: var(--accent); }
+.teaser button { font: inherit; color: inherit; cursor: pointer; }
+.teaser button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; position: relative; z-index: 1; }
+.teaser-reset, .pq-dye {
+  font-family: var(--sans) !important; font-size: 12px !important; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+  background: transparent; border: 1px solid var(--line-strong); border-radius: 3px; padding: 7px 12px; min-height: 36px;
+}
+.teaser-reset:hover, .pq-dye:hover:not(:disabled) { color: var(--accent); border-color: var(--accent); }
+.pq-dye:disabled { opacity: .55; cursor: not-allowed; }
+@media (max-width: 520px) { .teaser { text-align: left; } }
+
+/* Hewn: engraved 3×3 survey plate; deeper ink for higher ground */
+.hewn-grid { display: inline-grid; gap: 0; border: 1px solid var(--line-strong); outline: 1px solid var(--line); outline-offset: 3px; background: var(--bg); }
+.hewn-grid [role="row"] { display: contents; }
+.hewn-grid { grid-template-columns: repeat(3, 56px); }
+.hewn-grid button {
+  position: relative; width: 56px; height: 56px; border: 1px solid var(--line); background: var(--bg);
+  font-family: var(--fell) !important; font-size: 26px !important; line-height: 1; padding: 0;
+  transition: background-color .25s ease;
+}
+.hewn-grid button[data-h="0"] { background: color-mix(in srgb, var(--bg), var(--accent) 4%); }
+.hewn-grid button[data-h="1"] { background: color-mix(in srgb, var(--bg), var(--accent) 10%); }
+.hewn-grid button[data-h="2"] { background: color-mix(in srgb, var(--bg), var(--accent) 17%); }
+.hewn-grid button[data-h="3"] { background: color-mix(in srgb, var(--bg), var(--accent) 25%); }
+.hewn-grid button[data-h="4"] { background: color-mix(in srgb, var(--bg), var(--accent) 33%); }
+.hewn-grid button[data-mark]::after { position: absolute; top: 3px; right: 5px; font-size: 12px; color: var(--accent); font-family: var(--sans); }
+.hewn-grid button[data-mark="summit"]::after { content: "▲"; }
+.hewn-grid button[data-mark="hollow"]::after { content: "▼"; }
+.hewn-grid button.clash { color: var(--accent); text-decoration: underline wavy var(--accent); text-decoration-thickness: 1px; text-underline-offset: 4px; }
+.solved .hewn-grid { outline-color: var(--accent); }
+.solved .hewn-grid button { border-color: color-mix(in srgb, var(--line), var(--accent) 50%); }
+
+/* Pocket Quilt: fabrics differ by colour AND pattern, so they don't rely on colour alone */
+.pq-play { display: flex; flex-wrap: wrap; gap: 18px; align-items: flex-start; }
+.pq-grid { display: inline-grid; grid-template-columns: repeat(4, 44px); gap: 3px; padding: 6px; background: var(--surface-high); border-radius: 8px; }
+.pq-grid [role="row"] { display: contents; }
+.pq-grid button { width: 44px; height: 44px; border: 1px dashed var(--line-strong); border-radius: 6px; background: transparent; padding: 0; }
+[data-f="r"] { background: repeating-linear-gradient(45deg, #D9467F 0 6px, #C93A70 6px 9px) !important; border: 1px solid #A62D5C !important; }
+[data-f="b"] { background: radial-gradient(#F4EFE6 1.4px, transparent 1.6px) 0 0 / 8px 8px, #3D6FA8 !important; border: 1px solid #2B5384 !important; }
+[data-f="y"] { background: repeating-linear-gradient(0deg, #D9A21E 0 5px, #C68F12 5px 7px) !important; border: 1px solid #9B700C !important; }
+.pq-side { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; }
+.pq-side .caps { margin: 0; font-size: 13px; }
+.swatch { display: inline-block; width: 44px; height: 44px; border-radius: 6px; border: 1px dashed var(--line-strong); overflow: hidden; color: transparent; font-size: 1px; }
+.pq-quilt { display: grid; grid-template-columns: repeat(2, 22px); gap: 2px; list-style: none; margin: 0; padding: 4px; border: 1px solid var(--line-strong); border-radius: 4px; }
+.pq-quilt li { width: 22px; height: 22px; border-radius: 2px; background: var(--surface-high); }
+.pq-grid button.sew { animation: pq-sew .45s ease-out; }
+@keyframes pq-sew { 0% { transform: scale(1.12); box-shadow: 0 0 0 3px var(--accent); } 100% { transform: scale(1); box-shadow: none; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .hewn-grid button, .pq-grid button { transition: none; animation: none !important; }
+}

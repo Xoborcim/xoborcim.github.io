@@ -1,5 +1,5 @@
-/* Xoborcim home: two tiny playable teasers. No dependencies; the markup is in index.html,
-   so nothing shifts when this runs. Without JavaScript the teasers stay hidden (see .no-js). */
+/* Xoborcim home: a tiny playable Pocket Quilt teaser. No dependencies; the markup is in index.html,
+   so nothing shifts when this runs. Without JavaScript the teaser stays hidden (see .no-js). */
 (function () {
   "use strict";
 
@@ -23,73 +23,6 @@
       cells.forEach(function (c) { c.tabIndex = c === e.target ? 0 : -1; });
     });
     return cells;
-  }
-
-  /* ---------- Hewn: 3×3 map, heights 0–4 ---------- */
-  function hewn(root) {
-    if (!root) return;
-    var grid = root.querySelector(".hewn-grid");
-    var status = root.querySelector(".teaser-status");
-    var solution = grid.dataset.solution.split(",").map(Number);
-    var cells = gridNav(grid, 3);
-    var h = cells.map(function () { return null; });
-    var MAX = 4, solved = false;
-
-    function neighbours(i) {
-      var r = Math.floor(i / 3), c = i % 3, out = [];
-      if (r > 0) out.push(i - 3);
-      if (r < 2) out.push(i + 3);
-      if (c > 0) out.push(i - 1);
-      if (c < 2) out.push(i + 1);
-      return out;
-    }
-
-    function render() {
-      var clash = {};
-      h.forEach(function (v, i) {
-        if (v === null) return;
-        neighbours(i).forEach(function (j) { if (h[j] !== null && Math.abs(v - h[j]) !== 1) { clash[i] = clash[j] = true; } });
-      });
-      cells.forEach(function (c, i) {
-        var mark = c.dataset.mark;
-        var v = h[i];
-        c.textContent = v === null ? "" : String(v);
-        c.dataset.h = v === null ? "" : String(v);
-        c.classList.toggle("clash", !!clash[i]);
-        var r = Math.floor(i / 3) + 1, col = (i % 3) + 1;
-        c.setAttribute("aria-label", "Row " + r + ", column " + col + (mark ? ", " + mark : "") + ", " +
-          (v === null ? "empty" : "height " + v) + (clash[i] ? ", breaks the neighbour rule" : ""));
-      });
-      var filled = h.every(function (v) { return v !== null; });
-      var correct = filled && h.every(function (v, i) { return v === solution[i]; });
-      if (correct && !solved) {
-        solved = true;
-        root.classList.add("solved");
-        status.innerHTML = 'Charted! That\u2019s a whole Hewn map in miniature. <a href="/hewn/">Play today\u2019s full map</a>';
-      } else if (!correct) {
-        solved = false;
-        root.classList.remove("solved");
-        status.textContent = Object.keys(clash).length ? "Squares side by side must differ by exactly 1." :
-          filled ? "Not quite: check the summits, hollows and sea level." : "";
-      }
-    }
-
-    function set(i, v) { if (!solved || v !== h[i]) { h[i] = v; render(); } }
-
-    cells.forEach(function (c, i) {
-      c.addEventListener("click", function () { set(i, h[i] === null ? 0 : h[i] >= MAX ? null : h[i] + 1); });
-      c.addEventListener("keydown", function (e) {
-        if (/^[0-4]$/.test(e.key)) { e.preventDefault(); set(i, Number(e.key)); }
-        else if (e.key === "Backspace" || e.key === "Delete") { e.preventDefault(); set(i, null); }
-      });
-    });
-    root.querySelector(".teaser-reset").addEventListener("click", function () {
-      h = h.map(function () { return null; });
-      solved = false;
-      render();
-      cells[0].focus();
-    });
-    render();
   }
 
   /* ---------- Pocket Quilt: 4×4 board, sew 2×2 squares of one fabric ---------- */
@@ -191,6 +124,5 @@
     reset();
   }
 
-  hewn(document.getElementById("hewn-teaser"));
   pocketQuilt(document.getElementById("pq-teaser"));
 })();

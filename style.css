@@ -48,6 +48,9 @@
 /* Pocket Quilt keeps the house frame but takes its pink thread. */
 .pq { --on-accent: #1D1A1C; --accent: #D9467F; --accent-text: #A3285A; --accent-soft: rgba(217, 70, 127, .10); --contour: rgba(217, 70, 127, .12); }
 @media (prefers-color-scheme: dark) { .pq { --on-accent: #121013; --accent: #FF7FAF; --accent-text: #FF94BB; --accent-soft: rgba(255, 127, 175, .12); --contour: rgba(255, 127, 175, .14); } }
+/* Hypercats 4D takes the game's lavender. */
+.hc { --on-accent: #1D1A1C; --accent: #6B4FA0; --accent-text: #5A3F8F; --accent-soft: rgba(107, 79, 160, .10); --contour: rgba(107, 79, 160, .12); }
+@media (prefers-color-scheme: dark) { .hc { --on-accent: #121013; --accent: #B9A2EC; --accent-text: #C8B5F2; --accent-soft: rgba(185, 162, 236, .12); --contour: rgba(185, 162, 236, .14); } }
 
 /* ---------- base ---------- */
 * { box-sizing: border-box; }
@@ -190,6 +193,16 @@ figure figcaption { font-family: var(--fell); font-style: italic; color: var(--i
 .doc h2 { font-size: 24px; margin: 28px 0 6px; }
 .doc p, .doc li { max-width: 640px; }
 .updated { font-family: var(--fell); font-style: italic; color: var(--ink2); }
+
+/* ---------- strategy guide ---------- */
+.toc { background: var(--surface); border: 1px solid var(--line); padding: 14px 20px; margin: 0 0 18px; }
+.toc ol { margin: 6px 0 0; padding-left: 22px; }
+.toc li { margin: 2px 0; }
+.tip { border-left: 3px solid var(--accent); background: var(--accent-soft); padding: 10px 14px; }
+ol.steps li { margin: 6px 0; }
+svg.diagram { width: 100%; max-width: 360px; color: var(--ink); }
+svg.diagram .region rect { fill: var(--accent); fill-opacity: .28; }
+svg.diagram .cross path { stroke: var(--accent); }
 
 /* ---------- footer ---------- */
 footer { text-align: center; margin-top: var(--s5); color: var(--ink2); font-size: var(--t-sm); }

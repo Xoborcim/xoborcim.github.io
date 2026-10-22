@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Strategy Guide · Hypercats 4D</title>
-  <meta name="description" content="How to solve Hypercats 4D: the rules in plain words, the shortcuts that matter, and the techniques from your first warm-up to the 5⁴ boss levels.">
-  <link rel="stylesheet" href="/style.css?v=12">
+  <meta name="description" content="How to solve Hypercats 4D, step by step: the rules in plain words, a full puzzle solved with pictures, and what to do when you're stuck.">
+  <link rel="stylesheet" href="/style.css?v=13">
   <script src="/motion.js?v=11" defer></script>
 </head>
 <body class="hc sub">
@@ -13,171 +13,904 @@
   <a class="back" href="/games/hypercats/">← Hypercats 4D</a>
   <header class="hero">
     <p class="caps">Hypercats 4D</p>
-    <h1>Strategy Guide</h1>
-    <p class="lede">Four dimensions sound frightening. They aren't, once you know which three facts do all the work.</p>
+    <h1>How to Solve It</h1>
+    <p class="lede">Four dimensions sound impossible. Here's a whole puzzle solved in five small steps, so you can see it isn't.</p>
   </header>
   <div class="rule"><i></i></div>
+
   <nav class="toc">
     <p class="caps">Contents</p>
     <ol>
-      <li><a href="#rules">The rules, in plain words</a></li>
-      <li><a href="#map">Finding your way around</a></li>
-      <li><a href="#facts">Three facts that do all the work</a></li>
-      <li><a href="#techniques">Techniques, easiest first</a></li>
-      <li><a href="#app">Using the app well</a></li>
-      <li><a href="#levels">Levels, bosses and the daily</a></li>
-      <li><a href="#checklist">When you're stuck: a checklist</a></li>
+      <li><a href="#quick">The two-minute version</a></li>
+      <li><a href="#pictures">How to read the pictures</a></li>
+      <li><a href="#example">Level 1, solved step by step</a></li>
+      <li><a href="#moves">The three moves</a></li>
+      <li><a href="#stuck">When you're stuck</a></li>
     </ol>
   </nav>
 
-  <section id="rules">
-    <h2>1. The rules, in plain words</h2>
-    <p>The board is a hypercube: several ordinary 3D cubes lined up along a fourth direction. On a 4⁴ board there are
-      4 cubes, each 4 cells wide, deep and tall, for 256 cells in all. You place one cat per colored region, so a 4⁴
-      board holds exactly 4 cats.</p>
+  <section id="quick">
+    <h2>1. The two-minute version</h2>
+    <p>Each cell has four numbers: its <b>cube</b> (the buttons under the board), its <b>floor</b> (height), its
+      <b>row</b> and its <b>column</b>. You place one cat per colored region, and:</p>
     <ul class="features">
-      <li><b>One per region.</b> Every colored region gets exactly one cat.</li>
-      <li><b>One per slab.</b> No two cats share a cube, a floor, a row or a column. On a 4⁴ board that means every
-        cube, every floor, every row and every column holds exactly one cat.</li>
-      <li><b>No touching.</b> Cats can't be neighbors, not even diagonally, and that includes the cubes on either
-        side of yours.</li>
+      <li><b>One cat per cube, per floor, per row and per column.</b> On a 4⁴ board that's 4 cats, and each cube,
+        floor, row and column gets exactly one.</li>
+      <li><b>Cats can't touch,</b> not even diagonally or across neighboring cubes.</li>
+      <li><b>Let the app do the bookkeeping.</b> With assist on (the eye), every cell your cats rule out fades away,
+        and cells that touch a cat in the next cube turn red. You only ever think about the bright cells.</li>
+      <li><b>Look at one floor at a time.</b> Tap a floor number to look straight down on it, like a flat puzzle.</li>
     </ul>
-    <p>Rows, columns and floors aren't lines here. Each is a whole slab that runs through every cube. "Floor 2"
-      means floor 2 of cube 1, cube 2, cube 3 and cube 4 together, and only one of those 64 cells gets a cat.</p>
+    <p class="tip">The whole game is one question, asked over and over: <b>"where can this region's cat still go?"</b>
+      Start with the smallest region. When there's only one place left, that's the cat.</p>
   </section>
 
-  <section id="map">
-    <h2>2. Finding your way around</h2>
-    <p>Every cell has four numbers: its <b>cube</b> (the fourth dimension), its <b>floor</b> (height, counted from
-      the bottom), its <b>row</b> and its <b>column</b>. When you pick a floor in the app and look straight down, you're
-      looking at a flat grid of rows and columns, just like a 2D puzzle.</p>
-    <p>A good habit is to think one cube at a time and one floor at a time. Every cube has exactly one cat, so each
-      cube is its own little puzzle that just has to agree with its neighbors.</p>
-  </section>
-
-  <section id="facts">
-    <h2>3. Three facts that do all the work</h2>
-
-    <h3>Fact one: count the slabs</h3>
-    <p>There are as many cats as cubes, floors, rows and columns. So nothing can be left empty: every cube needs its
-      cat, every floor needs its cat, and so on. Most solving is just asking "where can this one go?" until only one
-      place is left.</p>
-
-    <h3>Fact two: touching only means the full diagonal</h3>
-    <p>This is the big one. Two cats can never share a cube, floor, row or column. So any two cats already differ in
-      <i>all four</i> numbers. That means they can only touch if every number differs by exactly one: the next cube
-      <i>and</i> the next floor <i>and</i> the next row <i>and</i> the next column, all at once.</p>
-    <p class="tip">A placed cat rules out its own cube, floor, row, column and region, plus just <b>16 extra
-      cells</b>: the full diagonals (cube ±1, floor ±1, row ±1, column ±1). Everything else that "touches" it was
-      already ruled out by the slabs.</p>
-
-    <h3>Fact three: neighboring cubes have to stretch apart</h3>
-    <p>Look at the cats in two neighboring cubes, say cube 2 and cube 3. If their floors, rows and columns were each
-      only one apart, they'd touch. So in at least one of those three directions, the two cats must be two or more
-      apart. This quietly removes a lot of options, especially near the middle of the board.</p>
-  </section>
-
-  <section id="techniques">
-    <h2>4. Techniques, easiest first</h2>
-    <p>These are listed in the order the game uses to rate puzzles. Easy puzzles fall to the first two. Experts need
-      all of them, and sometimes a long chain of what-ifs.</p>
-
-    <h3>Free cats</h3>
-    <p>A region of a single cell is a free cat. Take it and let the eliminations ripple outward. Small regions of two
-      or three cells are nearly as good: work them out early.</p>
-
-    <h3>Last cell standing</h3>
-    <p>If a region, cube, floor, row or column has only one cell left that isn't ruled out, the cat goes there.
-      With assist on, ruled-out cells fade, so this shows up as one cell glowing alone in its slab.</p>
-
-    <h3>Confinement</h3>
+  <section id="pictures">
+    <h2>2. How to read the pictures</h2>
+    <p>The game shows one cube at a time in 3D. Here every cube is laid out flat instead: each column is a cube, each row
+      is a floor (top floor first), and each little grid is that floor seen from above. This is the real Level 1, a
+      small 3⁴ board with three cats to find.</p>
     <figure>
-      <svg class="diagram" viewBox="0 0 300 190" role="img" aria-labelledby="confine-title">
-        <title id="confine-title">A floor seen from above. A region's remaining cells all sit in row 2, so the other cells of row 2 are crossed out.</title>
-        <g font-family="IM Fell, Georgia, serif" font-size="13" fill="currentColor">
-          <text x="18" y="56">Row 1</text><text x="18" y="96">Row 2</text>
-          <text x="18" y="136">Row 3</text><text x="18" y="176">Row 4</text>
-        </g>
-        <g stroke="currentColor" stroke-opacity=".55" fill="none">
-          <rect x="80" y="30" width="160" height="160"/>
-          <path d="M120 30v160M160 30v160M200 30v160M80 70h160M80 110h160M80 150h160"/>
-        </g>
-        <g class="region">
-          <rect x="81" y="71" width="38" height="38"/><rect x="121" y="71" width="38" height="38"/>
-        </g>
-        <g class="cross" stroke-width="2.4" stroke-linecap="round">
-          <path d="M170 80l20 20M190 80l-20 20M210 80l20 20M230 80l-20 20"/>
-        </g>
-        <text x="160" y="20" text-anchor="middle" font-family="IM Fell, Georgia, serif" font-style="italic" font-size="13" fill="currentColor">one floor, seen from above</text>
-      </svg>
-      <figcaption>The shaded region can only fit in row 2, so row 2's cat is taken. Cross out the rest of row 2.</figcaption>
+      <svg class="diagram board" viewBox="0 0 260 260" role="img" aria-label="Level 1 at the start: every floor of the three cubes">
+<text class="lbl" x="59.0" y="16" text-anchor="middle">Cube 1</text>
+<text class="lbl" x="139.0" y="16" text-anchor="middle">Cube 2</text>
+<text class="lbl" x="219.0" y="16" text-anchor="middle">Cube 3</text>
+<text class="lbl" x="2" y="63.0">F3</text>
+<text class="lbl" x="2" y="143.0">F2</text>
+<text class="lbl" x="2" y="223.0">F1</text>
+<rect x="27.0" y="27.0" width="20.0" height="20.0" rx="3" fill="#8F80DB" opacity="0.9"/>
+<rect x="49.0" y="27.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="71.0" y="27.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="27.0" y="49.0" width="20.0" height="20.0" rx="3" fill="#8F80DB" opacity="0.9"/>
+<rect x="49.0" y="49.0" width="20.0" height="20.0" rx="3" fill="#54AEB8" opacity="0.9"/>
+<rect x="71.0" y="49.0" width="20.0" height="20.0" rx="3" fill="#54AEB8" opacity="0.9"/>
+<rect x="27.0" y="71.0" width="20.0" height="20.0" rx="3" fill="#8F80DB" opacity="0.9"/>
+<rect x="49.0" y="71.0" width="20.0" height="20.0" rx="3" fill="#54AEB8" opacity="0.9"/>
+<rect x="71.0" y="71.0" width="20.0" height="20.0" rx="3" fill="#54AEB8" opacity="0.9"/>
+<rect x="27.0" y="107.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="49.0" y="107.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="71.0" y="107.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="27.0" y="129.0" width="20.0" height="20.0" rx="3" fill="#8F80DB" opacity="0.9"/>
+<rect x="49.0" y="129.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="71.0" y="129.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="27.0" y="151.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="49.0" y="151.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="71.0" y="151.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="27.0" y="187.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="49.0" y="187.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="71.0" y="187.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="27.0" y="209.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="49.0" y="209.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="71.0" y="209.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="27.0" y="231.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="49.0" y="231.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="71.0" y="231.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="107.0" y="27.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="129.0" y="27.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="151.0" y="27.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="107.0" y="49.0" width="20.0" height="20.0" rx="3" fill="#8F80DB" opacity="0.9"/>
+<rect x="129.0" y="49.0" width="20.0" height="20.0" rx="3" fill="#54AEB8" opacity="0.9"/>
+<rect x="151.0" y="49.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="107.0" y="71.0" width="20.0" height="20.0" rx="3" fill="#8F80DB" opacity="0.9"/>
+<rect x="129.0" y="71.0" width="20.0" height="20.0" rx="3" fill="#54AEB8" opacity="0.9"/>
+<rect x="151.0" y="71.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="107.0" y="107.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="129.0" y="107.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="151.0" y="107.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="107.0" y="129.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="129.0" y="129.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="151.0" y="129.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="107.0" y="151.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="129.0" y="151.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="151.0" y="151.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="107.0" y="187.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="129.0" y="187.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="151.0" y="187.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="107.0" y="209.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="129.0" y="209.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="151.0" y="209.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="107.0" y="231.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="129.0" y="231.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="151.0" y="231.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="187.0" y="27.0" width="20.0" height="20.0" rx="3" fill="#8F80DB" opacity="0.9"/>
+<rect x="209.0" y="27.0" width="20.0" height="20.0" rx="3" fill="#8F80DB" opacity="0.9"/>
+<rect x="231.0" y="27.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="187.0" y="49.0" width="20.0" height="20.0" rx="3" fill="#8F80DB" opacity="0.9"/>
+<rect x="209.0" y="49.0" width="20.0" height="20.0" rx="3" fill="#54AEB8" opacity="0.9"/>
+<rect x="231.0" y="49.0" width="20.0" height="20.0" rx="3" fill="#54AEB8" opacity="0.9"/>
+<rect x="187.0" y="71.0" width="20.0" height="20.0" rx="3" fill="#8F80DB" opacity="0.9"/>
+<rect x="209.0" y="71.0" width="20.0" height="20.0" rx="3" fill="#54AEB8" opacity="0.9"/>
+<rect x="231.0" y="71.0" width="20.0" height="20.0" rx="3" fill="#54AEB8" opacity="0.9"/>
+<rect x="187.0" y="107.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="209.0" y="107.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="231.0" y="107.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="187.0" y="129.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="209.0" y="129.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="231.0" y="129.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="187.0" y="151.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="209.0" y="151.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="231.0" y="151.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="187.0" y="187.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="209.0" y="187.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="231.0" y="187.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="187.0" y="209.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="209.0" y="209.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="231.0" y="209.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="187.0" y="231.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="209.0" y="231.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="231.0" y="231.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+</svg>
+      <figcaption>Level 1 at the start: three cubes, three floors each. Same puzzle as in your game.</figcaption>
     </figure>
-    <p>If every remaining cell of a region sits inside one slab, that slab's cat belongs to the region. Cross out every
-      other cell of that slab, in every cube. It works in reverse too: if every remaining cell of a cube (or floor, row
-      or column) belongs to one region, cross out the rest of that region.</p>
-    <p>The most useful version is <b>a region that lives inside one cube</b>. Then that cube's cat is the region's cat,
-      and the whole rest of the cube is empty.</p>
-
-    <h3>Pairs and trios</h3>
-    <p>Confinement scales up. If two regions are both squeezed into the same two cubes, those two cubes' cats belong
-      to them, so every other region's cells in those two cubes are out. The same goes for three regions in three
-      floors, and so on.</p>
-
-    <h3>What if?</h3>
-    <p>Pick a cell and imagine a cat there. Would it leave some region, cube, floor, row or column with nowhere to go?
-      Then it can't be a cat: mark it ✕. Good cells to test are ones that sit next to a small region, because a single
-      cat's diagonal shadow can wipe out every cell of a two- or three-cell region at once.</p>
-    <p class="tip">Remember fact two when you test: a cat's shadow in the neighboring cubes is only its 16 full
-      diagonals. You don't need to picture the fourth dimension, just "one step in every direction".</p>
-
-    <h3>Longer chains</h3>
-    <p>On expert puzzles and 5⁴ bosses you may need two what-ifs in a row: "if a cat goes here, then that region is
-      forced there, and then this floor is empty". Take it slowly and use ✕ marks as notes. There's always a logical
-      path. You never have to guess.</p>
-  </section>
-
-  <section id="app">
-    <h2>5. Using the app well</h2>
-    <ul class="features">
-      <li><b>Tap once for ✕, twice for a cat.</b> Hold a cell to clear its ✕. Mark freely: a ✕ costs nothing, but a
-        wrong cat costs one of your three hearts.</li>
-      <li><b>Leave assist on while you learn.</b> It fades cells your cats have already ruled out and turns cells red
-        when they touch a cat in a neighboring cube. That red glow is fact two, drawn for you.</li>
-      <li><b>Solve floor by floor.</b> Pick a floor to look straight down at it. The floors above disappear, so you can
-        reach the middle of the cube, and each floor reads like a flat puzzle.</li>
-      <li><b>Flip between cubes often.</b> The Cube buttons move through the fourth dimension, and a cat icon marks
-        each cube that already has its cat. Most confinements jump out when you compare neighboring cubes.</li>
-      <li><b>Drag to turn, pinch to zoom.</b> The arrow button puts the view back if you get lost.</li>
-      <li><b>Save hints for the bosses.</b> You get two per puzzle. Each one reveals a cat, in your current cube if it can.</li>
+    <ul class="legend">
+      <li><span class="key focus"></span> Solid outline: the cells the step is about.</li>
+      <li><span class="key target"></span> Dashed outline: what the step changes (a cat, or ✕s).</li>
+      <li><span class="key dim"></span> Faded cells are not part of the step.</li>
     </ul>
   </section>
 
-  <section id="levels">
-    <h2>6. Levels, bosses and the daily</h2>
-    <p>Levels never run out, and everyone gets the same puzzle for the same level number. The first three are small 3⁴
-      warm-ups. After that, levels come in blocks of ten: easier breathers mixed in with harder puzzles, and a boss at
-      the end of each block. From level 23 through level 300, bosses are on a bigger 5⁴ board with five cats.</p>
-    <p>The daily is one shared puzzle per day, and it gets harder through the week: easy on Monday and Tuesday, medium
-      on Wednesday and Thursday, hard on Friday and Saturday, and expert on Sunday. Solve it every day to keep your
-      streak.</p>
+  <section id="example">
+    <h2>3. Level 1, solved step by step</h2>
+    <p>These are the exact hints the game gives, in order. Try each one in the app as you read.</p>
+    <ol class="walkthrough">
+<li>
+  <p class="caps">Step 1 · Confinement</p>
+  <p>Every cell the teal region has left is in floor 3. Floor 3 only gets one cat, so it has to be the teal region's. That rules out the other 17 open cells in floor 3.</p>
+  <svg class="diagram board" viewBox="0 0 260 260" role="img" aria-label="Step 1: Confinement">
+<text class="lbl" x="59.0" y="16" text-anchor="middle">Cube 1</text>
+<text class="lbl" x="139.0" y="16" text-anchor="middle">Cube 2</text>
+<text class="lbl" x="219.0" y="16" text-anchor="middle">Cube 3</text>
+<text class="lbl" x="2" y="63.0">F3</text>
+<text class="lbl" x="2" y="143.0">F2</text>
+<text class="lbl" x="2" y="223.0">F1</text>
+<rect x="27.0" y="27.0" width="20.0" height="20.0" rx="3" fill="#8F80DB" opacity="0.9"/>
+<rect class="target" x="27.5" y="27.5" width="19.0" height="19.0" rx="3"/>
+<path class="x ghost" d="M33.0 33.0 l8 8 M41.0 33.0 l-8 8"/>
+<rect x="49.0" y="27.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect class="target" x="49.5" y="27.5" width="19.0" height="19.0" rx="3"/>
+<path class="x ghost" d="M55.0 33.0 l8 8 M63.0 33.0 l-8 8"/>
+<rect x="71.0" y="27.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect class="target" x="71.5" y="27.5" width="19.0" height="19.0" rx="3"/>
+<path class="x ghost" d="M77.0 33.0 l8 8 M85.0 33.0 l-8 8"/>
+<rect x="27.0" y="49.0" width="20.0" height="20.0" rx="3" fill="#8F80DB" opacity="0.9"/>
+<rect class="target" x="27.5" y="49.5" width="19.0" height="19.0" rx="3"/>
+<path class="x ghost" d="M33.0 55.0 l8 8 M41.0 55.0 l-8 8"/>
+<rect x="49.0" y="49.0" width="20.0" height="20.0" rx="3" fill="#54AEB8" opacity="0.9"/>
+<rect class="focus" x="49.5" y="49.5" width="19.0" height="19.0" rx="3"/>
+<rect x="71.0" y="49.0" width="20.0" height="20.0" rx="3" fill="#54AEB8" opacity="0.9"/>
+<rect class="focus" x="71.5" y="49.5" width="19.0" height="19.0" rx="3"/>
+<rect x="27.0" y="71.0" width="20.0" height="20.0" rx="3" fill="#8F80DB" opacity="0.9"/>
+<rect class="target" x="27.5" y="71.5" width="19.0" height="19.0" rx="3"/>
+<path class="x ghost" d="M33.0 77.0 l8 8 M41.0 77.0 l-8 8"/>
+<rect x="49.0" y="71.0" width="20.0" height="20.0" rx="3" fill="#54AEB8" opacity="0.9"/>
+<rect class="focus" x="49.5" y="71.5" width="19.0" height="19.0" rx="3"/>
+<rect x="71.0" y="71.0" width="20.0" height="20.0" rx="3" fill="#54AEB8" opacity="0.9"/>
+<rect class="focus" x="71.5" y="71.5" width="19.0" height="19.0" rx="3"/>
+<rect x="27.0" y="107.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="49.0" y="107.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="71.0" y="107.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="27.0" y="129.0" width="20.0" height="20.0" rx="3" fill="#8F80DB" opacity="0.35"/>
+<rect x="49.0" y="129.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="71.0" y="129.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="27.0" y="151.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="49.0" y="151.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="71.0" y="151.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="27.0" y="187.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="49.0" y="187.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="71.0" y="187.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="27.0" y="209.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="49.0" y="209.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="71.0" y="209.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="27.0" y="231.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="49.0" y="231.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="71.0" y="231.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="107.0" y="27.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect class="target" x="107.5" y="27.5" width="19.0" height="19.0" rx="3"/>
+<path class="x ghost" d="M113.0 33.0 l8 8 M121.0 33.0 l-8 8"/>
+<rect x="129.0" y="27.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect class="target" x="129.5" y="27.5" width="19.0" height="19.0" rx="3"/>
+<path class="x ghost" d="M135.0 33.0 l8 8 M143.0 33.0 l-8 8"/>
+<rect x="151.0" y="27.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect class="target" x="151.5" y="27.5" width="19.0" height="19.0" rx="3"/>
+<path class="x ghost" d="M157.0 33.0 l8 8 M165.0 33.0 l-8 8"/>
+<rect x="107.0" y="49.0" width="20.0" height="20.0" rx="3" fill="#8F80DB" opacity="0.9"/>
+<rect class="target" x="107.5" y="49.5" width="19.0" height="19.0" rx="3"/>
+<path class="x ghost" d="M113.0 55.0 l8 8 M121.0 55.0 l-8 8"/>
+<rect x="129.0" y="49.0" width="20.0" height="20.0" rx="3" fill="#54AEB8" opacity="0.9"/>
+<rect class="focus" x="129.5" y="49.5" width="19.0" height="19.0" rx="3"/>
+<rect x="151.0" y="49.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect class="target" x="151.5" y="49.5" width="19.0" height="19.0" rx="3"/>
+<path class="x ghost" d="M157.0 55.0 l8 8 M165.0 55.0 l-8 8"/>
+<rect x="107.0" y="71.0" width="20.0" height="20.0" rx="3" fill="#8F80DB" opacity="0.9"/>
+<rect class="target" x="107.5" y="71.5" width="19.0" height="19.0" rx="3"/>
+<path class="x ghost" d="M113.0 77.0 l8 8 M121.0 77.0 l-8 8"/>
+<rect x="129.0" y="71.0" width="20.0" height="20.0" rx="3" fill="#54AEB8" opacity="0.9"/>
+<rect class="focus" x="129.5" y="71.5" width="19.0" height="19.0" rx="3"/>
+<rect x="151.0" y="71.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect class="target" x="151.5" y="71.5" width="19.0" height="19.0" rx="3"/>
+<path class="x ghost" d="M157.0 77.0 l8 8 M165.0 77.0 l-8 8"/>
+<rect x="107.0" y="107.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="129.0" y="107.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="151.0" y="107.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="107.0" y="129.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="129.0" y="129.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="151.0" y="129.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="107.0" y="151.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="129.0" y="151.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="151.0" y="151.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="107.0" y="187.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="129.0" y="187.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="151.0" y="187.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="107.0" y="209.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="129.0" y="209.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="151.0" y="209.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="107.0" y="231.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="129.0" y="231.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="151.0" y="231.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="187.0" y="27.0" width="20.0" height="20.0" rx="3" fill="#8F80DB" opacity="0.9"/>
+<rect class="target" x="187.5" y="27.5" width="19.0" height="19.0" rx="3"/>
+<path class="x ghost" d="M193.0 33.0 l8 8 M201.0 33.0 l-8 8"/>
+<rect x="209.0" y="27.0" width="20.0" height="20.0" rx="3" fill="#8F80DB" opacity="0.9"/>
+<rect class="target" x="209.5" y="27.5" width="19.0" height="19.0" rx="3"/>
+<path class="x ghost" d="M215.0 33.0 l8 8 M223.0 33.0 l-8 8"/>
+<rect x="231.0" y="27.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect class="target" x="231.5" y="27.5" width="19.0" height="19.0" rx="3"/>
+<path class="x ghost" d="M237.0 33.0 l8 8 M245.0 33.0 l-8 8"/>
+<rect x="187.0" y="49.0" width="20.0" height="20.0" rx="3" fill="#8F80DB" opacity="0.9"/>
+<rect class="target" x="187.5" y="49.5" width="19.0" height="19.0" rx="3"/>
+<path class="x ghost" d="M193.0 55.0 l8 8 M201.0 55.0 l-8 8"/>
+<rect x="209.0" y="49.0" width="20.0" height="20.0" rx="3" fill="#54AEB8" opacity="0.9"/>
+<rect class="focus" x="209.5" y="49.5" width="19.0" height="19.0" rx="3"/>
+<rect x="231.0" y="49.0" width="20.0" height="20.0" rx="3" fill="#54AEB8" opacity="0.9"/>
+<rect class="focus" x="231.5" y="49.5" width="19.0" height="19.0" rx="3"/>
+<rect x="187.0" y="71.0" width="20.0" height="20.0" rx="3" fill="#8F80DB" opacity="0.9"/>
+<rect class="target" x="187.5" y="71.5" width="19.0" height="19.0" rx="3"/>
+<path class="x ghost" d="M193.0 77.0 l8 8 M201.0 77.0 l-8 8"/>
+<rect x="209.0" y="71.0" width="20.0" height="20.0" rx="3" fill="#54AEB8" opacity="0.9"/>
+<rect class="focus" x="209.5" y="71.5" width="19.0" height="19.0" rx="3"/>
+<rect x="231.0" y="71.0" width="20.0" height="20.0" rx="3" fill="#54AEB8" opacity="0.9"/>
+<rect class="focus" x="231.5" y="71.5" width="19.0" height="19.0" rx="3"/>
+<rect x="187.0" y="107.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="209.0" y="107.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="231.0" y="107.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="187.0" y="129.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="209.0" y="129.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="231.0" y="129.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="187.0" y="151.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="209.0" y="151.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="231.0" y="151.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="187.0" y="187.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="209.0" y="187.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="231.0" y="187.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="187.0" y="209.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="209.0" y="209.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="231.0" y="209.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="187.0" y="231.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="209.0" y="231.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="231.0" y="231.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+</svg>
+</li>
+<li>
+  <p class="caps">Step 2 · Last cell standing</p>
+  <p>The lavender region needs exactly one cat, and every other cell in it is already ruled out. Only one cell is left, so the cat goes there.</p>
+  <svg class="diagram board" viewBox="0 0 260 260" role="img" aria-label="Step 2: Last cell standing">
+<text class="lbl" x="59.0" y="16" text-anchor="middle">Cube 1</text>
+<text class="lbl" x="139.0" y="16" text-anchor="middle">Cube 2</text>
+<text class="lbl" x="219.0" y="16" text-anchor="middle">Cube 3</text>
+<text class="lbl" x="2" y="63.0">F3</text>
+<text class="lbl" x="2" y="143.0">F2</text>
+<text class="lbl" x="2" y="223.0">F1</text>
+<rect x="27.0" y="27.0" width="20.0" height="20.0" rx="3" fill="#8F80DB" opacity="0.35"/>
+<path class="x" d="M33.0 33.0 l8 8 M41.0 33.0 l-8 8"/>
+<rect x="49.0" y="27.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<path class="x" d="M55.0 33.0 l8 8 M63.0 33.0 l-8 8"/>
+<rect x="71.0" y="27.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<path class="x" d="M77.0 33.0 l8 8 M85.0 33.0 l-8 8"/>
+<rect x="27.0" y="49.0" width="20.0" height="20.0" rx="3" fill="#8F80DB" opacity="0.35"/>
+<path class="x" d="M33.0 55.0 l8 8 M41.0 55.0 l-8 8"/>
+<rect x="49.0" y="49.0" width="20.0" height="20.0" rx="3" fill="#54AEB8" opacity="0.35"/>
+<rect x="71.0" y="49.0" width="20.0" height="20.0" rx="3" fill="#54AEB8" opacity="0.35"/>
+<rect x="27.0" y="71.0" width="20.0" height="20.0" rx="3" fill="#8F80DB" opacity="0.35"/>
+<path class="x" d="M33.0 77.0 l8 8 M41.0 77.0 l-8 8"/>
+<rect x="49.0" y="71.0" width="20.0" height="20.0" rx="3" fill="#54AEB8" opacity="0.35"/>
+<rect x="71.0" y="71.0" width="20.0" height="20.0" rx="3" fill="#54AEB8" opacity="0.35"/>
+<rect x="27.0" y="107.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="49.0" y="107.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="71.0" y="107.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="27.0" y="129.0" width="20.0" height="20.0" rx="3" fill="#8F80DB" opacity="0.9"/>
+<rect class="focus" x="27.5" y="129.5" width="19.0" height="19.0" rx="3"/>
+<rect class="target" x="27.5" y="129.5" width="19.0" height="19.0" rx="3"/>
+<g class="cat ghost" transform="translate(37.0 139.0)"><path d="M-6.5 -1 L-5.5 -7 L-2 -3.5 L2 -3.5 L5.5 -7 L6.5 -1 A6.5 5.5 0 0 1 -6.5 -1Z"/></g>
+<rect x="49.0" y="129.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="71.0" y="129.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="27.0" y="151.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="49.0" y="151.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="71.0" y="151.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="27.0" y="187.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="49.0" y="187.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="71.0" y="187.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="27.0" y="209.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="49.0" y="209.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="71.0" y="209.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="27.0" y="231.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="49.0" y="231.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="71.0" y="231.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="107.0" y="27.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<path class="x" d="M113.0 33.0 l8 8 M121.0 33.0 l-8 8"/>
+<rect x="129.0" y="27.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<path class="x" d="M135.0 33.0 l8 8 M143.0 33.0 l-8 8"/>
+<rect x="151.0" y="27.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<path class="x" d="M157.0 33.0 l8 8 M165.0 33.0 l-8 8"/>
+<rect x="107.0" y="49.0" width="20.0" height="20.0" rx="3" fill="#8F80DB" opacity="0.35"/>
+<path class="x" d="M113.0 55.0 l8 8 M121.0 55.0 l-8 8"/>
+<rect x="129.0" y="49.0" width="20.0" height="20.0" rx="3" fill="#54AEB8" opacity="0.35"/>
+<rect x="151.0" y="49.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<path class="x" d="M157.0 55.0 l8 8 M165.0 55.0 l-8 8"/>
+<rect x="107.0" y="71.0" width="20.0" height="20.0" rx="3" fill="#8F80DB" opacity="0.35"/>
+<path class="x" d="M113.0 77.0 l8 8 M121.0 77.0 l-8 8"/>
+<rect x="129.0" y="71.0" width="20.0" height="20.0" rx="3" fill="#54AEB8" opacity="0.35"/>
+<rect x="151.0" y="71.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<path class="x" d="M157.0 77.0 l8 8 M165.0 77.0 l-8 8"/>
+<rect x="107.0" y="107.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="129.0" y="107.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="151.0" y="107.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="107.0" y="129.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="129.0" y="129.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="151.0" y="129.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="107.0" y="151.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="129.0" y="151.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="151.0" y="151.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="107.0" y="187.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="129.0" y="187.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="151.0" y="187.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="107.0" y="209.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="129.0" y="209.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="151.0" y="209.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="107.0" y="231.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="129.0" y="231.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="151.0" y="231.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="187.0" y="27.0" width="20.0" height="20.0" rx="3" fill="#8F80DB" opacity="0.35"/>
+<path class="x" d="M193.0 33.0 l8 8 M201.0 33.0 l-8 8"/>
+<rect x="209.0" y="27.0" width="20.0" height="20.0" rx="3" fill="#8F80DB" opacity="0.35"/>
+<path class="x" d="M215.0 33.0 l8 8 M223.0 33.0 l-8 8"/>
+<rect x="231.0" y="27.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<path class="x" d="M237.0 33.0 l8 8 M245.0 33.0 l-8 8"/>
+<rect x="187.0" y="49.0" width="20.0" height="20.0" rx="3" fill="#8F80DB" opacity="0.35"/>
+<path class="x" d="M193.0 55.0 l8 8 M201.0 55.0 l-8 8"/>
+<rect x="209.0" y="49.0" width="20.0" height="20.0" rx="3" fill="#54AEB8" opacity="0.35"/>
+<rect x="231.0" y="49.0" width="20.0" height="20.0" rx="3" fill="#54AEB8" opacity="0.35"/>
+<rect x="187.0" y="71.0" width="20.0" height="20.0" rx="3" fill="#8F80DB" opacity="0.35"/>
+<path class="x" d="M193.0 77.0 l8 8 M201.0 77.0 l-8 8"/>
+<rect x="209.0" y="71.0" width="20.0" height="20.0" rx="3" fill="#54AEB8" opacity="0.35"/>
+<rect x="231.0" y="71.0" width="20.0" height="20.0" rx="3" fill="#54AEB8" opacity="0.35"/>
+<rect x="187.0" y="107.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="209.0" y="107.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="231.0" y="107.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="187.0" y="129.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="209.0" y="129.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="231.0" y="129.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="187.0" y="151.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="209.0" y="151.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="231.0" y="151.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="187.0" y="187.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="209.0" y="187.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="231.0" y="187.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="187.0" y="209.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="209.0" y="209.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="231.0" y="209.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="187.0" y="231.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="209.0" y="231.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="231.0" y="231.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+</svg>
+</li>
+<li>
+  <p class="caps">Step 3 · Confinement</p>
+  <p>Every cell the teal region has left is in cube 3. Cube 3 only gets one cat, so it has to be the teal region's. That rules out the other 4 open cells in cube 3.</p>
+  <svg class="diagram board" viewBox="0 0 260 260" role="img" aria-label="Step 3: Confinement">
+<text class="lbl" x="59.0" y="16" text-anchor="middle">Cube 1</text>
+<text class="lbl" x="139.0" y="16" text-anchor="middle">Cube 2</text>
+<text class="lbl" x="219.0" y="16" text-anchor="middle">Cube 3</text>
+<text class="lbl" x="2" y="63.0">F3</text>
+<text class="lbl" x="2" y="143.0">F2</text>
+<text class="lbl" x="2" y="223.0">F1</text>
+<rect x="27.0" y="27.0" width="20.0" height="20.0" rx="3" fill="#8F80DB" opacity="0.35"/>
+<path class="x" d="M33.0 33.0 l8 8 M41.0 33.0 l-8 8"/>
+<rect x="49.0" y="27.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<path class="x" d="M55.0 33.0 l8 8 M63.0 33.0 l-8 8"/>
+<rect x="71.0" y="27.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<path class="x" d="M77.0 33.0 l8 8 M85.0 33.0 l-8 8"/>
+<rect x="27.0" y="49.0" width="20.0" height="20.0" rx="3" fill="#8F80DB" opacity="0.35"/>
+<path class="x" d="M33.0 55.0 l8 8 M41.0 55.0 l-8 8"/>
+<rect x="49.0" y="49.0" width="20.0" height="20.0" rx="3" fill="#54AEB8" opacity="0.35"/>
+<rect x="71.0" y="49.0" width="20.0" height="20.0" rx="3" fill="#54AEB8" opacity="0.35"/>
+<rect x="27.0" y="71.0" width="20.0" height="20.0" rx="3" fill="#8F80DB" opacity="0.35"/>
+<path class="x" d="M33.0 77.0 l8 8 M41.0 77.0 l-8 8"/>
+<rect x="49.0" y="71.0" width="20.0" height="20.0" rx="3" fill="#54AEB8" opacity="0.35"/>
+<rect x="71.0" y="71.0" width="20.0" height="20.0" rx="3" fill="#54AEB8" opacity="0.35"/>
+<rect x="27.0" y="107.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="49.0" y="107.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="71.0" y="107.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="27.0" y="129.0" width="20.0" height="20.0" rx="3" fill="#8F80DB" opacity="0.35"/>
+<g class="cat" transform="translate(37.0 139.0)"><path d="M-6.5 -1 L-5.5 -7 L-2 -3.5 L2 -3.5 L5.5 -7 L6.5 -1 A6.5 5.5 0 0 1 -6.5 -1Z"/></g>
+<rect x="49.0" y="129.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="71.0" y="129.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="27.0" y="151.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="49.0" y="151.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="71.0" y="151.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="27.0" y="187.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="49.0" y="187.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="71.0" y="187.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="27.0" y="209.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="49.0" y="209.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="71.0" y="209.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="27.0" y="231.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="49.0" y="231.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="71.0" y="231.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="107.0" y="27.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<path class="x" d="M113.0 33.0 l8 8 M121.0 33.0 l-8 8"/>
+<rect x="129.0" y="27.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<path class="x" d="M135.0 33.0 l8 8 M143.0 33.0 l-8 8"/>
+<rect x="151.0" y="27.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<path class="x" d="M157.0 33.0 l8 8 M165.0 33.0 l-8 8"/>
+<rect x="107.0" y="49.0" width="20.0" height="20.0" rx="3" fill="#8F80DB" opacity="0.35"/>
+<path class="x" d="M113.0 55.0 l8 8 M121.0 55.0 l-8 8"/>
+<rect x="129.0" y="49.0" width="20.0" height="20.0" rx="3" fill="#54AEB8" opacity="0.35"/>
+<rect x="151.0" y="49.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<path class="x" d="M157.0 55.0 l8 8 M165.0 55.0 l-8 8"/>
+<rect x="107.0" y="71.0" width="20.0" height="20.0" rx="3" fill="#8F80DB" opacity="0.35"/>
+<path class="x" d="M113.0 77.0 l8 8 M121.0 77.0 l-8 8"/>
+<rect x="129.0" y="71.0" width="20.0" height="20.0" rx="3" fill="#54AEB8" opacity="0.35"/>
+<rect x="151.0" y="71.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<path class="x" d="M157.0 77.0 l8 8 M165.0 77.0 l-8 8"/>
+<rect x="107.0" y="107.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="129.0" y="107.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="151.0" y="107.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="107.0" y="129.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="129.0" y="129.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="151.0" y="129.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="107.0" y="151.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="129.0" y="151.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="151.0" y="151.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="107.0" y="187.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="129.0" y="187.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="151.0" y="187.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="107.0" y="209.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="129.0" y="209.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="151.0" y="209.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="107.0" y="231.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="129.0" y="231.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="151.0" y="231.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="187.0" y="27.0" width="20.0" height="20.0" rx="3" fill="#8F80DB" opacity="0.35"/>
+<path class="x" d="M193.0 33.0 l8 8 M201.0 33.0 l-8 8"/>
+<rect x="209.0" y="27.0" width="20.0" height="20.0" rx="3" fill="#8F80DB" opacity="0.35"/>
+<path class="x" d="M215.0 33.0 l8 8 M223.0 33.0 l-8 8"/>
+<rect x="231.0" y="27.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<path class="x" d="M237.0 33.0 l8 8 M245.0 33.0 l-8 8"/>
+<rect x="187.0" y="49.0" width="20.0" height="20.0" rx="3" fill="#8F80DB" opacity="0.35"/>
+<path class="x" d="M193.0 55.0 l8 8 M201.0 55.0 l-8 8"/>
+<rect x="209.0" y="49.0" width="20.0" height="20.0" rx="3" fill="#54AEB8" opacity="0.35"/>
+<rect x="231.0" y="49.0" width="20.0" height="20.0" rx="3" fill="#54AEB8" opacity="0.35"/>
+<rect x="187.0" y="71.0" width="20.0" height="20.0" rx="3" fill="#8F80DB" opacity="0.35"/>
+<path class="x" d="M193.0 77.0 l8 8 M201.0 77.0 l-8 8"/>
+<rect x="209.0" y="71.0" width="20.0" height="20.0" rx="3" fill="#54AEB8" opacity="0.9"/>
+<rect class="focus" x="209.5" y="71.5" width="19.0" height="19.0" rx="3"/>
+<rect x="231.0" y="71.0" width="20.0" height="20.0" rx="3" fill="#54AEB8" opacity="0.9"/>
+<rect class="focus" x="231.5" y="71.5" width="19.0" height="19.0" rx="3"/>
+<rect x="187.0" y="107.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="209.0" y="107.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="231.0" y="107.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="187.0" y="129.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="209.0" y="129.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="231.0" y="129.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="187.0" y="151.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="209.0" y="151.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="231.0" y="151.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="187.0" y="187.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="209.0" y="187.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect class="target" x="209.5" y="187.5" width="19.0" height="19.0" rx="3"/>
+<path class="x ghost" d="M215.0 193.0 l8 8 M223.0 193.0 l-8 8"/>
+<rect x="231.0" y="187.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect class="target" x="231.5" y="187.5" width="19.0" height="19.0" rx="3"/>
+<path class="x ghost" d="M237.0 193.0 l8 8 M245.0 193.0 l-8 8"/>
+<rect x="187.0" y="209.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="209.0" y="209.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="231.0" y="209.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="187.0" y="231.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="209.0" y="231.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect class="target" x="209.5" y="231.5" width="19.0" height="19.0" rx="3"/>
+<path class="x ghost" d="M215.0 237.0 l8 8 M223.0 237.0 l-8 8"/>
+<rect x="231.0" y="231.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect class="target" x="231.5" y="231.5" width="19.0" height="19.0" rx="3"/>
+<path class="x ghost" d="M237.0 237.0 l8 8 M245.0 237.0 l-8 8"/>
+</svg>
+</li>
+<li>
+  <p class="caps">Step 4 · Last cell standing</p>
+  <p>Column 2 needs exactly one cat, and every other cell in it is already ruled out. Only one cell is left, so the cat goes there.</p>
+  <svg class="diagram board" viewBox="0 0 260 260" role="img" aria-label="Step 4: Last cell standing">
+<text class="lbl" x="59.0" y="16" text-anchor="middle">Cube 1</text>
+<text class="lbl" x="139.0" y="16" text-anchor="middle">Cube 2</text>
+<text class="lbl" x="219.0" y="16" text-anchor="middle">Cube 3</text>
+<text class="lbl" x="2" y="63.0">F3</text>
+<text class="lbl" x="2" y="143.0">F2</text>
+<text class="lbl" x="2" y="223.0">F1</text>
+<rect x="27.0" y="27.0" width="20.0" height="20.0" rx="3" fill="#8F80DB" opacity="0.35"/>
+<path class="x" d="M33.0 33.0 l8 8 M41.0 33.0 l-8 8"/>
+<rect x="49.0" y="27.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<path class="x" d="M55.0 33.0 l8 8 M63.0 33.0 l-8 8"/>
+<rect x="71.0" y="27.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<path class="x" d="M77.0 33.0 l8 8 M85.0 33.0 l-8 8"/>
+<rect x="27.0" y="49.0" width="20.0" height="20.0" rx="3" fill="#8F80DB" opacity="0.35"/>
+<path class="x" d="M33.0 55.0 l8 8 M41.0 55.0 l-8 8"/>
+<rect x="49.0" y="49.0" width="20.0" height="20.0" rx="3" fill="#54AEB8" opacity="0.35"/>
+<rect x="71.0" y="49.0" width="20.0" height="20.0" rx="3" fill="#54AEB8" opacity="0.35"/>
+<rect x="27.0" y="71.0" width="20.0" height="20.0" rx="3" fill="#8F80DB" opacity="0.35"/>
+<path class="x" d="M33.0 77.0 l8 8 M41.0 77.0 l-8 8"/>
+<rect x="49.0" y="71.0" width="20.0" height="20.0" rx="3" fill="#54AEB8" opacity="0.35"/>
+<rect x="71.0" y="71.0" width="20.0" height="20.0" rx="3" fill="#54AEB8" opacity="0.35"/>
+<rect x="27.0" y="107.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="49.0" y="107.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="71.0" y="107.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="27.0" y="129.0" width="20.0" height="20.0" rx="3" fill="#8F80DB" opacity="0.35"/>
+<g class="cat" transform="translate(37.0 139.0)"><path d="M-6.5 -1 L-5.5 -7 L-2 -3.5 L2 -3.5 L5.5 -7 L6.5 -1 A6.5 5.5 0 0 1 -6.5 -1Z"/></g>
+<rect x="49.0" y="129.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="71.0" y="129.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="27.0" y="151.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="49.0" y="151.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="71.0" y="151.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="27.0" y="187.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="49.0" y="187.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="71.0" y="187.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="27.0" y="209.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="49.0" y="209.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="71.0" y="209.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="27.0" y="231.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="49.0" y="231.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="71.0" y="231.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="107.0" y="27.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<path class="x" d="M113.0 33.0 l8 8 M121.0 33.0 l-8 8"/>
+<rect x="129.0" y="27.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<path class="x" d="M135.0 33.0 l8 8 M143.0 33.0 l-8 8"/>
+<rect x="151.0" y="27.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<path class="x" d="M157.0 33.0 l8 8 M165.0 33.0 l-8 8"/>
+<rect x="107.0" y="49.0" width="20.0" height="20.0" rx="3" fill="#8F80DB" opacity="0.35"/>
+<path class="x" d="M113.0 55.0 l8 8 M121.0 55.0 l-8 8"/>
+<rect x="129.0" y="49.0" width="20.0" height="20.0" rx="3" fill="#54AEB8" opacity="0.35"/>
+<rect x="151.0" y="49.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<path class="x" d="M157.0 55.0 l8 8 M165.0 55.0 l-8 8"/>
+<rect x="107.0" y="71.0" width="20.0" height="20.0" rx="3" fill="#8F80DB" opacity="0.35"/>
+<path class="x" d="M113.0 77.0 l8 8 M121.0 77.0 l-8 8"/>
+<rect x="129.0" y="71.0" width="20.0" height="20.0" rx="3" fill="#54AEB8" opacity="0.35"/>
+<rect x="151.0" y="71.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<path class="x" d="M157.0 77.0 l8 8 M165.0 77.0 l-8 8"/>
+<rect x="107.0" y="107.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="129.0" y="107.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="151.0" y="107.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="107.0" y="129.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="129.0" y="129.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="151.0" y="129.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="107.0" y="151.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="129.0" y="151.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="151.0" y="151.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="107.0" y="187.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="129.0" y="187.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="151.0" y="187.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="107.0" y="209.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="129.0" y="209.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="151.0" y="209.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="107.0" y="231.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="129.0" y="231.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="151.0" y="231.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="187.0" y="27.0" width="20.0" height="20.0" rx="3" fill="#8F80DB" opacity="0.35"/>
+<path class="x" d="M193.0 33.0 l8 8 M201.0 33.0 l-8 8"/>
+<rect x="209.0" y="27.0" width="20.0" height="20.0" rx="3" fill="#8F80DB" opacity="0.35"/>
+<path class="x" d="M215.0 33.0 l8 8 M223.0 33.0 l-8 8"/>
+<rect x="231.0" y="27.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<path class="x" d="M237.0 33.0 l8 8 M245.0 33.0 l-8 8"/>
+<rect x="187.0" y="49.0" width="20.0" height="20.0" rx="3" fill="#8F80DB" opacity="0.35"/>
+<path class="x" d="M193.0 55.0 l8 8 M201.0 55.0 l-8 8"/>
+<rect x="209.0" y="49.0" width="20.0" height="20.0" rx="3" fill="#54AEB8" opacity="0.35"/>
+<rect x="231.0" y="49.0" width="20.0" height="20.0" rx="3" fill="#54AEB8" opacity="0.35"/>
+<rect x="187.0" y="71.0" width="20.0" height="20.0" rx="3" fill="#8F80DB" opacity="0.35"/>
+<path class="x" d="M193.0 77.0 l8 8 M201.0 77.0 l-8 8"/>
+<rect x="209.0" y="71.0" width="20.0" height="20.0" rx="3" fill="#54AEB8" opacity="0.9"/>
+<rect class="focus" x="209.5" y="71.5" width="19.0" height="19.0" rx="3"/>
+<rect class="target" x="209.5" y="71.5" width="19.0" height="19.0" rx="3"/>
+<g class="cat ghost" transform="translate(219.0 81.0)"><path d="M-6.5 -1 L-5.5 -7 L-2 -3.5 L2 -3.5 L5.5 -7 L6.5 -1 A6.5 5.5 0 0 1 -6.5 -1Z"/></g>
+<rect x="231.0" y="71.0" width="20.0" height="20.0" rx="3" fill="#54AEB8" opacity="0.35"/>
+<rect x="187.0" y="107.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="209.0" y="107.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="231.0" y="107.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="187.0" y="129.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="209.0" y="129.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="231.0" y="129.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="187.0" y="151.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="209.0" y="151.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="231.0" y="151.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="187.0" y="187.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="209.0" y="187.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<path class="x" d="M215.0 193.0 l8 8 M223.0 193.0 l-8 8"/>
+<rect x="231.0" y="187.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<path class="x" d="M237.0 193.0 l8 8 M245.0 193.0 l-8 8"/>
+<rect x="187.0" y="209.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="209.0" y="209.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="231.0" y="209.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="187.0" y="231.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="209.0" y="231.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<path class="x" d="M215.0 237.0 l8 8 M223.0 237.0 l-8 8"/>
+<rect x="231.0" y="231.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<path class="x" d="M237.0 237.0 l8 8 M245.0 237.0 l-8 8"/>
+</svg>
+</li>
+<li>
+  <p class="caps">Step 5 · Last cell standing</p>
+  <p>The sage region needs exactly one cat, and every other cell in it is already ruled out. Only one cell is left, so the cat goes there.</p>
+  <svg class="diagram board" viewBox="0 0 260 260" role="img" aria-label="Step 5: Last cell standing">
+<text class="lbl" x="59.0" y="16" text-anchor="middle">Cube 1</text>
+<text class="lbl" x="139.0" y="16" text-anchor="middle">Cube 2</text>
+<text class="lbl" x="219.0" y="16" text-anchor="middle">Cube 3</text>
+<text class="lbl" x="2" y="63.0">F3</text>
+<text class="lbl" x="2" y="143.0">F2</text>
+<text class="lbl" x="2" y="223.0">F1</text>
+<rect x="27.0" y="27.0" width="20.0" height="20.0" rx="3" fill="#8F80DB" opacity="0.35"/>
+<path class="x" d="M33.0 33.0 l8 8 M41.0 33.0 l-8 8"/>
+<rect x="49.0" y="27.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<path class="x" d="M55.0 33.0 l8 8 M63.0 33.0 l-8 8"/>
+<rect x="71.0" y="27.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<path class="x" d="M77.0 33.0 l8 8 M85.0 33.0 l-8 8"/>
+<rect x="27.0" y="49.0" width="20.0" height="20.0" rx="3" fill="#8F80DB" opacity="0.35"/>
+<path class="x" d="M33.0 55.0 l8 8 M41.0 55.0 l-8 8"/>
+<rect x="49.0" y="49.0" width="20.0" height="20.0" rx="3" fill="#54AEB8" opacity="0.35"/>
+<rect x="71.0" y="49.0" width="20.0" height="20.0" rx="3" fill="#54AEB8" opacity="0.35"/>
+<rect x="27.0" y="71.0" width="20.0" height="20.0" rx="3" fill="#8F80DB" opacity="0.35"/>
+<path class="x" d="M33.0 77.0 l8 8 M41.0 77.0 l-8 8"/>
+<rect x="49.0" y="71.0" width="20.0" height="20.0" rx="3" fill="#54AEB8" opacity="0.35"/>
+<rect x="71.0" y="71.0" width="20.0" height="20.0" rx="3" fill="#54AEB8" opacity="0.35"/>
+<rect x="27.0" y="107.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="49.0" y="107.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="71.0" y="107.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="27.0" y="129.0" width="20.0" height="20.0" rx="3" fill="#8F80DB" opacity="0.35"/>
+<g class="cat" transform="translate(37.0 139.0)"><path d="M-6.5 -1 L-5.5 -7 L-2 -3.5 L2 -3.5 L5.5 -7 L6.5 -1 A6.5 5.5 0 0 1 -6.5 -1Z"/></g>
+<rect x="49.0" y="129.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="71.0" y="129.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="27.0" y="151.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="49.0" y="151.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="71.0" y="151.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="27.0" y="187.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="49.0" y="187.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="71.0" y="187.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="27.0" y="209.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="49.0" y="209.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="71.0" y="209.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="27.0" y="231.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="49.0" y="231.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="71.0" y="231.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="107.0" y="27.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<path class="x" d="M113.0 33.0 l8 8 M121.0 33.0 l-8 8"/>
+<rect x="129.0" y="27.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<path class="x" d="M135.0 33.0 l8 8 M143.0 33.0 l-8 8"/>
+<rect x="151.0" y="27.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<path class="x" d="M157.0 33.0 l8 8 M165.0 33.0 l-8 8"/>
+<rect x="107.0" y="49.0" width="20.0" height="20.0" rx="3" fill="#8F80DB" opacity="0.35"/>
+<path class="x" d="M113.0 55.0 l8 8 M121.0 55.0 l-8 8"/>
+<rect x="129.0" y="49.0" width="20.0" height="20.0" rx="3" fill="#54AEB8" opacity="0.35"/>
+<rect x="151.0" y="49.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<path class="x" d="M157.0 55.0 l8 8 M165.0 55.0 l-8 8"/>
+<rect x="107.0" y="71.0" width="20.0" height="20.0" rx="3" fill="#8F80DB" opacity="0.35"/>
+<path class="x" d="M113.0 77.0 l8 8 M121.0 77.0 l-8 8"/>
+<rect x="129.0" y="71.0" width="20.0" height="20.0" rx="3" fill="#54AEB8" opacity="0.35"/>
+<rect x="151.0" y="71.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<path class="x" d="M157.0 77.0 l8 8 M165.0 77.0 l-8 8"/>
+<rect x="107.0" y="107.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="129.0" y="107.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="151.0" y="107.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="107.0" y="129.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="129.0" y="129.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="151.0" y="129.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="107.0" y="151.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="129.0" y="151.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="151.0" y="151.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="107.0" y="187.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="129.0" y="187.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="151.0" y="187.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect class="focus" x="151.5" y="187.5" width="19.0" height="19.0" rx="3"/>
+<rect class="target" x="151.5" y="187.5" width="19.0" height="19.0" rx="3"/>
+<g class="cat ghost" transform="translate(161.0 197.0)"><path d="M-6.5 -1 L-5.5 -7 L-2 -3.5 L2 -3.5 L5.5 -7 L6.5 -1 A6.5 5.5 0 0 1 -6.5 -1Z"/></g>
+<rect x="107.0" y="209.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="129.0" y="209.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="151.0" y="209.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="107.0" y="231.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="129.0" y="231.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="151.0" y="231.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="187.0" y="27.0" width="20.0" height="20.0" rx="3" fill="#8F80DB" opacity="0.35"/>
+<path class="x" d="M193.0 33.0 l8 8 M201.0 33.0 l-8 8"/>
+<rect x="209.0" y="27.0" width="20.0" height="20.0" rx="3" fill="#8F80DB" opacity="0.35"/>
+<path class="x" d="M215.0 33.0 l8 8 M223.0 33.0 l-8 8"/>
+<rect x="231.0" y="27.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<path class="x" d="M237.0 33.0 l8 8 M245.0 33.0 l-8 8"/>
+<rect x="187.0" y="49.0" width="20.0" height="20.0" rx="3" fill="#8F80DB" opacity="0.35"/>
+<path class="x" d="M193.0 55.0 l8 8 M201.0 55.0 l-8 8"/>
+<rect x="209.0" y="49.0" width="20.0" height="20.0" rx="3" fill="#54AEB8" opacity="0.35"/>
+<rect x="231.0" y="49.0" width="20.0" height="20.0" rx="3" fill="#54AEB8" opacity="0.35"/>
+<rect x="187.0" y="71.0" width="20.0" height="20.0" rx="3" fill="#8F80DB" opacity="0.35"/>
+<path class="x" d="M193.0 77.0 l8 8 M201.0 77.0 l-8 8"/>
+<rect x="209.0" y="71.0" width="20.0" height="20.0" rx="3" fill="#54AEB8" opacity="0.35"/>
+<g class="cat" transform="translate(219.0 81.0)"><path d="M-6.5 -1 L-5.5 -7 L-2 -3.5 L2 -3.5 L5.5 -7 L6.5 -1 A6.5 5.5 0 0 1 -6.5 -1Z"/></g>
+<rect x="231.0" y="71.0" width="20.0" height="20.0" rx="3" fill="#54AEB8" opacity="0.35"/>
+<rect x="187.0" y="107.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="209.0" y="107.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="231.0" y="107.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="187.0" y="129.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="209.0" y="129.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="231.0" y="129.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="187.0" y="151.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="209.0" y="151.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="231.0" y="151.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="187.0" y="187.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="209.0" y="187.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<path class="x" d="M215.0 193.0 l8 8 M223.0 193.0 l-8 8"/>
+<rect x="231.0" y="187.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<path class="x" d="M237.0 193.0 l8 8 M245.0 193.0 l-8 8"/>
+<rect x="187.0" y="209.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="209.0" y="209.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="231.0" y="209.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="187.0" y="231.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<rect x="209.0" y="231.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<path class="x" d="M215.0 237.0 l8 8 M223.0 237.0 l-8 8"/>
+<rect x="231.0" y="231.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.35"/>
+<path class="x" d="M237.0 237.0 l8 8 M245.0 237.0 l-8 8"/>
+</svg>
+</li>
+    </ol>
+    <figure>
+      <svg class="diagram board" viewBox="0 0 260 260" role="img" aria-label="Level 1 solved">
+<text class="lbl" x="59.0" y="16" text-anchor="middle">Cube 1</text>
+<text class="lbl" x="139.0" y="16" text-anchor="middle">Cube 2</text>
+<text class="lbl" x="219.0" y="16" text-anchor="middle">Cube 3</text>
+<text class="lbl" x="2" y="63.0">F3</text>
+<text class="lbl" x="2" y="143.0">F2</text>
+<text class="lbl" x="2" y="223.0">F1</text>
+<rect x="27.0" y="27.0" width="20.0" height="20.0" rx="3" fill="#8F80DB" opacity="0.9"/>
+<path class="x" d="M33.0 33.0 l8 8 M41.0 33.0 l-8 8"/>
+<rect x="49.0" y="27.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<path class="x" d="M55.0 33.0 l8 8 M63.0 33.0 l-8 8"/>
+<rect x="71.0" y="27.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<path class="x" d="M77.0 33.0 l8 8 M85.0 33.0 l-8 8"/>
+<rect x="27.0" y="49.0" width="20.0" height="20.0" rx="3" fill="#8F80DB" opacity="0.9"/>
+<path class="x" d="M33.0 55.0 l8 8 M41.0 55.0 l-8 8"/>
+<rect x="49.0" y="49.0" width="20.0" height="20.0" rx="3" fill="#54AEB8" opacity="0.9"/>
+<rect x="71.0" y="49.0" width="20.0" height="20.0" rx="3" fill="#54AEB8" opacity="0.9"/>
+<rect x="27.0" y="71.0" width="20.0" height="20.0" rx="3" fill="#8F80DB" opacity="0.9"/>
+<path class="x" d="M33.0 77.0 l8 8 M41.0 77.0 l-8 8"/>
+<rect x="49.0" y="71.0" width="20.0" height="20.0" rx="3" fill="#54AEB8" opacity="0.9"/>
+<rect x="71.0" y="71.0" width="20.0" height="20.0" rx="3" fill="#54AEB8" opacity="0.9"/>
+<rect x="27.0" y="107.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="49.0" y="107.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="71.0" y="107.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="27.0" y="129.0" width="20.0" height="20.0" rx="3" fill="#8F80DB" opacity="0.9"/>
+<g class="cat" transform="translate(37.0 139.0)"><path d="M-6.5 -1 L-5.5 -7 L-2 -3.5 L2 -3.5 L5.5 -7 L6.5 -1 A6.5 5.5 0 0 1 -6.5 -1Z"/></g>
+<rect x="49.0" y="129.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="71.0" y="129.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="27.0" y="151.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="49.0" y="151.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="71.0" y="151.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="27.0" y="187.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="49.0" y="187.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="71.0" y="187.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="27.0" y="209.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="49.0" y="209.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="71.0" y="209.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="27.0" y="231.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="49.0" y="231.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="71.0" y="231.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="107.0" y="27.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<path class="x" d="M113.0 33.0 l8 8 M121.0 33.0 l-8 8"/>
+<rect x="129.0" y="27.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<path class="x" d="M135.0 33.0 l8 8 M143.0 33.0 l-8 8"/>
+<rect x="151.0" y="27.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<path class="x" d="M157.0 33.0 l8 8 M165.0 33.0 l-8 8"/>
+<rect x="107.0" y="49.0" width="20.0" height="20.0" rx="3" fill="#8F80DB" opacity="0.9"/>
+<path class="x" d="M113.0 55.0 l8 8 M121.0 55.0 l-8 8"/>
+<rect x="129.0" y="49.0" width="20.0" height="20.0" rx="3" fill="#54AEB8" opacity="0.9"/>
+<rect x="151.0" y="49.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<path class="x" d="M157.0 55.0 l8 8 M165.0 55.0 l-8 8"/>
+<rect x="107.0" y="71.0" width="20.0" height="20.0" rx="3" fill="#8F80DB" opacity="0.9"/>
+<path class="x" d="M113.0 77.0 l8 8 M121.0 77.0 l-8 8"/>
+<rect x="129.0" y="71.0" width="20.0" height="20.0" rx="3" fill="#54AEB8" opacity="0.9"/>
+<rect x="151.0" y="71.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<path class="x" d="M157.0 77.0 l8 8 M165.0 77.0 l-8 8"/>
+<rect x="107.0" y="107.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="129.0" y="107.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="151.0" y="107.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="107.0" y="129.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="129.0" y="129.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="151.0" y="129.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="107.0" y="151.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="129.0" y="151.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="151.0" y="151.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="107.0" y="187.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="129.0" y="187.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="151.0" y="187.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<g class="cat" transform="translate(161.0 197.0)"><path d="M-6.5 -1 L-5.5 -7 L-2 -3.5 L2 -3.5 L5.5 -7 L6.5 -1 A6.5 5.5 0 0 1 -6.5 -1Z"/></g>
+<rect x="107.0" y="209.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="129.0" y="209.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="151.0" y="209.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="107.0" y="231.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="129.0" y="231.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="151.0" y="231.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="187.0" y="27.0" width="20.0" height="20.0" rx="3" fill="#8F80DB" opacity="0.9"/>
+<path class="x" d="M193.0 33.0 l8 8 M201.0 33.0 l-8 8"/>
+<rect x="209.0" y="27.0" width="20.0" height="20.0" rx="3" fill="#8F80DB" opacity="0.9"/>
+<path class="x" d="M215.0 33.0 l8 8 M223.0 33.0 l-8 8"/>
+<rect x="231.0" y="27.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<path class="x" d="M237.0 33.0 l8 8 M245.0 33.0 l-8 8"/>
+<rect x="187.0" y="49.0" width="20.0" height="20.0" rx="3" fill="#8F80DB" opacity="0.9"/>
+<path class="x" d="M193.0 55.0 l8 8 M201.0 55.0 l-8 8"/>
+<rect x="209.0" y="49.0" width="20.0" height="20.0" rx="3" fill="#54AEB8" opacity="0.9"/>
+<rect x="231.0" y="49.0" width="20.0" height="20.0" rx="3" fill="#54AEB8" opacity="0.9"/>
+<rect x="187.0" y="71.0" width="20.0" height="20.0" rx="3" fill="#8F80DB" opacity="0.9"/>
+<path class="x" d="M193.0 77.0 l8 8 M201.0 77.0 l-8 8"/>
+<rect x="209.0" y="71.0" width="20.0" height="20.0" rx="3" fill="#54AEB8" opacity="0.9"/>
+<g class="cat" transform="translate(219.0 81.0)"><path d="M-6.5 -1 L-5.5 -7 L-2 -3.5 L2 -3.5 L5.5 -7 L6.5 -1 A6.5 5.5 0 0 1 -6.5 -1Z"/></g>
+<rect x="231.0" y="71.0" width="20.0" height="20.0" rx="3" fill="#54AEB8" opacity="0.9"/>
+<rect x="187.0" y="107.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="209.0" y="107.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="231.0" y="107.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="187.0" y="129.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="209.0" y="129.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="231.0" y="129.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="187.0" y="151.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="209.0" y="151.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="231.0" y="151.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="187.0" y="187.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="209.0" y="187.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<path class="x" d="M215.0 193.0 l8 8 M223.0 193.0 l-8 8"/>
+<rect x="231.0" y="187.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<path class="x" d="M237.0 193.0 l8 8 M245.0 193.0 l-8 8"/>
+<rect x="187.0" y="209.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="209.0" y="209.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="231.0" y="209.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="187.0" y="231.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<rect x="209.0" y="231.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<path class="x" d="M215.0 237.0 l8 8 M223.0 237.0 l-8 8"/>
+<rect x="231.0" y="231.0" width="20.0" height="20.0" rx="3" fill="#8FBD7A" opacity="0.9"/>
+<path class="x" d="M237.0 237.0 l8 8 M245.0 237.0 l-8 8"/>
+</svg>
+      <figcaption>Solved: one cat per region, cube, floor, row and column, and none touching.</figcaption>
+    </figure>
   </section>
 
-  <section id="checklist">
-    <h2>7. When you're stuck: a checklist</h2>
+  <section id="moves">
+    <h2>4. The three moves</h2>
+    <h3>Last cell standing</h3>
+    <p>A region, cube, floor, row or column has only one bright cell left. That's the cat. Tiny regions of a single cell
+      are free cats: grab them first.</p>
+    <h3>Confinement</h3>
+    <p>All the bright cells of a region sit on one floor (or in one cube, row or column). That floor's one cat must
+      belong to the region, so every other cell on that floor is ✕. It works the other way round too: if all of a
+      cube's bright cells belong to one region, the rest of that region is ✕.</p>
+    <h3>What if?</h3>
+    <p>Only on medium puzzles and up. Imagine a cat in a cell. If it would fade out every bright cell of some region,
+      that cell can't be a cat. Good cells to test are the ones right next to a small region.</p>
+    <p class="tip">Two cats can only touch if they're one step apart in every direction at once: next cube, next floor,
+      next row and next column. That's why red cells only ever show up in the cubes on either side of a cat.</p>
+  </section>
+
+  <section id="stuck">
+    <h2>5. When you're stuck</h2>
     <ol class="steps">
-      <li>Is any region down to one cell? Any cube, floor, row or column?</li>
-      <li>Does a region fit inside a single cube, floor, row or column? Cross out the rest of that slab.</li>
-      <li>Is a cube, floor, row or column covered by a single region? Cross out the rest of that region.</li>
-      <li>Do two regions share the same two cubes (or floors, rows, columns)? Clear everything else from them.</li>
-      <li>Find the smallest unsolved region. For each cell nearby, ask: would a cat here wipe it out?</li>
-      <li>Still stuck? Try a what-if on a cell in the most crowded cube, and follow it two steps.</li>
+      <li>Turn assist on, so only the bright cells are left to think about.</li>
+      <li>Find the smallest region. Count its bright cells. One left? Cat.</li>
+      <li>Are all of its bright cells on one floor, or in one cube? Clear the rest of that floor or cube.</li>
+      <li>Check each cube button: a cube with one bright cell left has found its cat.</li>
+      <li>Still nothing? Tap the bulb. Hints point you to the right place first, and only explain if you ask.</li>
     </ol>
   </section>
 
   <div class="rule"><i></i></div>
   <footer>
     <p>Questions or a puzzle you think is impossible: <a href="mailto:xoborcim.games@gmail.com">xoborcim.games@gmail.com</a></p>
-    <p class="caps"><a href="/">Xoborcim</a></p>
+    <p class="caps"><a href="/games/hypercats/">Hypercats 4D</a> · <a href="/">Xoborcim</a></p>
   </footer>
 </main>
 </body>

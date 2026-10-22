@@ -194,6 +194,9 @@ figure figcaption { font-family: var(--fell); font-style: italic; color: var(--i
 .doc p, .doc li { max-width: 640px; }
 .updated { font-family: var(--fell); font-style: italic; color: var(--ink2); }
 
+/* a phone screenshot: kept phone-sized rather than stretched to the column */
+figure img.shot { max-width: 300px; border-radius: 26px; }
+
 /* ---------- strategy guide ---------- */
 .toc { background: var(--surface); border: 1px solid var(--line); padding: 14px 20px; margin: 0 0 18px; }
 .toc ol { margin: 6px 0 0; padding-left: 22px; }

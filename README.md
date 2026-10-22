@@ -8,6 +8,7 @@ House style follows Hewn (IM FELL English, parchment and ink, light and dark).
 /                          home: every game as a "plate", each with a tiny playable teaser (home.js)
 /games/hewn/               Hewn: about, support.html, privacy.html
 /games/pocket-quilt/       Pocket Quilt: about, support.html, privacy.html
+/games/hypercats/          Hypercats 4D: about, strategy.html, support.html, privacy.html
 /app-ads.txt               AdMob seller line (one publisher covers both games)
 /hewn/                     NOT here: Hewn's playable web version, published from the Xoborcim/hewn repo
 ```
@@ -40,6 +41,7 @@ grep -rl xoborcim.games@gmail.com --include="*.html" . | xargs sed -i '' 's/xobo
 |---|---|---|---|
 | Hewn | `https://xoborcim.github.io/games/hewn/privacy.html` | `…/games/hewn/support.html` | `https://xoborcim.github.io` |
 | Pocket Quilt | `https://xoborcim.github.io/games/pocket-quilt/privacy.html` | `…/games/pocket-quilt/support.html` | `https://xoborcim.github.io` |
+| Hypercats 4D | `https://xoborcim.github.io/games/hypercats/privacy.html` | `…/games/hypercats/support.html` | `https://xoborcim.github.io` |
 
 The Marketing URL matters: AdMob reads `app-ads.txt` from the developer website on the App Store listing.
 

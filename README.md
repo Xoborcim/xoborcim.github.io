@@ -12,6 +12,7 @@ House style follows Hewn (IM FELL English, parchment and ink, light and dark).
 /app-ads.txt               AdMob seller line (one publisher covers both games)
 /hewn/                     NOT here: Hewn's playable web version, published from the Xoborcim/hewn repo
 /lab/emberprint/           unlisted prototype (noindex, not linked); synced from ~/EmberPrint via tools/publish.sh
+/lab/emberprint-life/      unlisted Game of Life prototype (noindex, not linked); built from ~/EmberPrint/life via scripts/publish.sh
 ```
 
 ## Contact email

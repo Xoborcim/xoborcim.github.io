@@ -11,6 +11,7 @@ House style follows Hewn (IM FELL English, parchment and ink, light and dark).
 /games/hypercats/          Hypercats 4D: about, strategy.html, support.html, privacy.html
 /app-ads.txt               AdMob seller line (one publisher covers both games)
 /hewn/                     NOT here: Hewn's playable web version, published from the Xoborcim/hewn repo
+/lab/emberprint/           unlisted prototype (noindex, not linked); synced from ~/EmberPrint via tools/publish.sh
 ```
 
 ## Contact email

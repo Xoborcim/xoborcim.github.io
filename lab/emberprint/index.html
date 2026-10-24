@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Emberprint Lab</title>
+<style>
+  :root { color-scheme: light; --line: #bbb; --muted: #666; }
+  body { font: 14px/1.4 ui-monospace, Menlo, Consolas, monospace; margin: 0; background: #fafafa; color: #111; }
+  header { display: flex; gap: 12px; align-items: center; padding: 8px 16px; border-bottom: 1px solid var(--line); background: #fff; flex-wrap: wrap; }
+  header h1 { font-size: 16px; margin: 0 12px 0 0; }
+  main { display: flex; gap: 16px; padding: 16px; align-items: flex-start; flex-wrap: wrap; }
+  section { background: #fff; border: 1px solid var(--line); padding: 12px; min-width: 300px; }
+  #left { flex: 0 1 auto; }
+  #dev { flex: 1 1 420px; max-height: calc(100vh - 90px); overflow: auto; }
+  button, select, input { font: inherit; }
+  button.on { background: #222; color: #fff; }
+  .row { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; margin: 6px 0; }
+  .grid { display: inline-grid; gap: 2px; background: var(--line); border: 2px solid var(--line); user-select: none; margin: 8px 0; }
+  .cell { width: 44px; height: 44px; background: #fff; position: relative; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: bold; cursor: pointer; }
+  .cell .sub { position: absolute; right: 2px; bottom: 1px; font-size: 10px; font-weight: normal; color: var(--muted); }
+  .wall { background: #333; cursor: default; }
+  .src { background: #e33; color: #fff; }
+  .clue { background: #eef; }
+  .clue.ok { background: #cfc; }
+  .clue.bad { background: #fcc; }
+  .brk { background: #8a5a2b; color: #fff; }
+  .opn { color: #999; }
+  .burnt { background: #ffcf8a; }
+  .burnt.clue { background: #ffb36b; }
+  .front { background: #ff7a1a !important; color: #fff; }
+  .hl { outline: 3px solid #07f; outline-offset: -3px; }
+  .hlc { outline: 3px dashed #07f; outline-offset: -3px; }
+  .sol::after { content: ''; position: absolute; inset: 6px; border: 2px dashed #8a5a2b; }
+  #msg { min-height: 2.8em; white-space: pre-wrap; color: #333; max-width: 520px; }
+  .mini { display: inline-grid; gap: 1px; background: #ccc; margin: 4px; vertical-align: top; }
+  .mini div { width: 9px; height: 9px; background: #fff; }
+  .mini .wall { background: #333; } .mini .src { background: #e33; } .mini .clue { background: #99f; } .mini .brk { background: #8a5a2b; }
+  .steps li { cursor: pointer; margin: 2px 0; }
+  .steps li:hover { background: #eef; }
+  .tag { display: inline-block; padding: 0 4px; border: 1px solid #999; font-size: 12px; }
+  .flag { color: #b00; font-weight: bold; }
+  textarea { width: 100%; height: 120px; font: 12px ui-monospace, monospace; }
+  .hidden { display: none; }
+  small { color: var(--muted); }
+  table { border-collapse: collapse; } td, th { border: 1px solid #ddd; padding: 2px 6px; text-align: left; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Emberprint Lab</h1>
+  <button id="tabPlay" class="on">Play</button>
+  <button id="tabEdit">Editor</button>
+  <label><input type="checkbox" id="devToggle"> developer view</label>
+  <small>prototype · fire spreads 1 cell/tick orthogonally · walls and firebreaks don't burn</small>
+</header>
+<main>
+  <section id="left">
+    <div id="playPane">
+      <div class="row">
+        <select id="puzzleSel"></select>
+        <button id="prevBtn">◀</button><button id="nextBtn">▶</button>
+      </div>
+      <div id="info"></div>
+      <div id="playGrid"></div>
+      <div class="row">
+        <button id="undoBtn">Undo</button><button id="redoBtn">Redo</button><button id="resetBtn">Reset</button>
+        <button id="hintBtn">Hint</button>
+        <button id="checkBtn">Check</button>
+        <label id="liveWrap"><input type="checkbox" id="liveToggle" checked> live simulation</label>
+      </div>
+      <div class="row">
+        <button id="replayBtn">▶ Replay</button>
+        <input type="range" id="replaySlider" min="0" max="10" value="0" disabled>
+        <span id="replayLabel"></span>
+      </div>
+      <div id="msg"></div>
+      <small>Click: toggle firebreak · Shift+click / right-click: mark "open" (note only)</small>
+    </div>
+
+    <div id="editPane" class="hidden">
+      <div class="row">
+        W <input id="edW" type="number" min="3" max="9" value="6" style="width:3em">
+        H <input id="edH" type="number" min="3" max="9" value="6" style="width:3em">
+        Mode <select id="edMode"><option value="A">A: place firebreaks</option><option value="B">B: infer firebreaks</option></select>
+        k <input id="edK" type="number" min="0" max="12" value="3" style="width:3em">
+        <button id="edNew">New blank</button>
+        <button id="edRandom">Random (generator)</button>
+      </div>
+      <div class="row" id="edTools">
+        Tool:
+        <label><input type="radio" name="tool" value="open" checked> burnable</label>
+        <label><input type="radio" name="tool" value="wall"> wall</label>
+        <label><input type="radio" name="tool" value="source"> source</label>
+        <label><input type="radio" name="tool" value="break"> solution firebreak</label>
+        <label><input type="radio" name="tool" value="clue"> clue</label>
+        <label><input type="radio" name="tool" value="erase"> erase clue</label>
+      </div>
+      <div class="row">
+        Clue: <select id="edOp"><option value="=">= exactly</option><option value="<=">≤ by</option><option value=">=">≥ not before</option><option value="never">never burns</option></select>
+        t <input id="edT" placeholder="auto" style="width:4em"> <small>(blank = take time from solution)</small>
+      </div>
+      <div id="edGrid"></div>
+      <div class="row">
+        <button id="edUndo">Undo</button><button id="edRedo">Redo</button>
+        <button id="edK2">k = #solution</button>
+        <button id="edAutoT">Auto-time clues</button>
+        <button id="edReveal">Clue every cell</button>
+        <button id="edMin">Minimize clues</button>
+        <button id="edClear">Clear clues</button>
+      </div>
+      <div class="row">
+        <button id="edAnalyze">Analyze</button>
+        <button id="edPlay">Playtest</button>
+        <button id="edSave">Save to list</button>
+        <button id="edExport">Export JSON</button>
+        <button id="edImport">Import JSON</button>
+      </div>
+      <div id="edMsg"></div>
+      <textarea id="edJson" placeholder="puzzle JSON"></textarea>
+    </div>
+  </section>
+
+  <section id="dev" class="hidden">
+    <div class="row">
+      <label><input type="checkbox" id="showSol"> overlay solution</label>
+      <label><input type="checkbox" id="peekSim"> show times (mode B peek)</label>
+      <button id="deepBtn">Deep analysis (L5)</button>
+    </div>
+    <div id="devBody"></div>
+  </section>
+</main>
+<script src="engine.js"></script>
+<script src="puzzles/puzzles.js"></script>
+<script src="ui.js"></script>
+</body>
+</html>
